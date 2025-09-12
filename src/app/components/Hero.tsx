@@ -84,7 +84,7 @@ const Hero: React.FC = () => {
             {/* Social Links */}
             <div className="flex space-x-6">
               <a
-                href="https://github.com/junaidali"
+                href="https://github.com/JunaidAly"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-900 hover:text-white transition-all duration-200"
@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
                 <FiGithub size={20} />
               </a>
               <a
-                href="https://linkedin.com/in/junaidali"
+                href="https://www.linkedin.com/in/junaid-ali-8679871ab/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center text-gray-600 hover:bg-blue-600 hover:text-white transition-all duration-200"

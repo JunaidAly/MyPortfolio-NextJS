@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
       icon: FiMapPin,
       label: 'Location',
       value: 'Golden Jublee CHS, Islamabad, Pakistan',
-      href: 'https://maps.google.com/?q=Islamabad,Pakistan',
+      href: 'https://maps.app.goo.gl/wMNmGKeCBxea9aZm8',
       color: 'from-purple-500 to-violet-500'
     }
   ]

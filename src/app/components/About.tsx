@@ -1,3 +1,4 @@
+"use client"
 import { FiAward, FiBook, FiCode, FiHeart, FiDownload } from 'react-icons/fi'
 import Image from 'next/image'
 
@@ -88,7 +89,7 @@ const About: React.FC = () => {
             <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-blue-500 to-purple-600 p-1">
               <div className="w-full h-full rounded-full overflow-hidden bg-white">
                 <Image
-                  src="/myprofile.png"
+                  src="/myprofile.jpg"
                   alt="Junaid Ali - Profile Picture"
                   width={192}
                   height={192}
