@@ -1,5 +1,6 @@
 "use client"
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { 
   FiMail, 
   FiPhone, 
@@ -12,6 +13,7 @@ import {
   FiExternalLink,
   FiDownload
 } from 'react-icons/fi'
+import { staggerContainer, staggerItem } from '@/lib/animations'
 
 const Contact: React.FC = () => {
   const handleDownloadCV = () => {
@@ -101,23 +103,51 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <motion.section
+      id="contact"
+      className="py-20 bg-white"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <motion.div
+          className="text-center mb-16"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+            variants={staggerItem}
+          >
             Get In Touch
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology. 
+          </motion.h2>
+          <motion.div
+            className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"
+            variants={staggerItem}
+          ></motion.div>
+          <motion.p
+            className="text-lg text-gray-600 max-w-3xl mx-auto"
+            variants={staggerItem}
+          >
+            I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
             Feel free to reach out!
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Let's Start a Conversation
@@ -129,25 +159,36 @@ const Contact: React.FC = () => {
               
               {/* Download Resume Button */}
               <div className="mb-8">
-                <button
+                <motion.button
                   onClick={handleDownloadCV}
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 space-x-2"
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg transition-all duration-200 space-x-2"
+                  whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)" }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <FiDownload size={18} />
                   <span>Download My Resume</span>
-                </button>
+                </motion.button>
               </div>
             </div>
 
             {/* Contact Methods */}
-            <div className="space-y-6">
+            <motion.div
+              className="space-y-6"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
               {contactInfo.map((info, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={info.href}
                   target={info.href.startsWith('http') ? '_blank' : '_self'}
                   rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-start space-x-4 p-4 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
+                  className="flex items-start space-x-4 p-4 rounded-xl border border-gray-200 transition-all duration-300 group"
+                  variants={staggerItem}
+                  custom={index}
+                  whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)" }}
                 >
                   <div className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}>
                     <info.icon size={20} />
@@ -156,32 +197,49 @@ const Contact: React.FC = () => {
                     <h4 className="font-semibold text-gray-900 mb-1">{info.label}</h4>
                     <p className="text-gray-600 text-sm break-all">{info.value}</p>
                   </div>
-                </a>
+                </motion.a>
               ))}
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="pt-8 border-t border-gray-200">
+            <motion.div
+              className="pt-8 border-t border-gray-200"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <h4 className="font-semibold text-gray-900 mb-4">Connect With Me</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 ${social.color} hover:text-white transition-all duration-300 hover:scale-110`}
+                    className={`w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 ${social.color} hover:text-white transition-all duration-300`}
                     aria-label={social.name}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
                     <social.icon size={20} />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="bg-gray-50 rounded-2xl p-8">
+          <motion.div
+            className="bg-gray-50 rounded-2xl p-8"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
               Send Me a Message
             </h3>
@@ -271,10 +329,12 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Submit Button */}
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-6 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.02, y: -2, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)" }}
+                whileTap={{ scale: 0.98 }}
               >
                 {isSubmitting ? (
                   <>
@@ -287,7 +347,7 @@ const Contact: React.FC = () => {
                     <span>Send Message</span>
                   </>
                 )}
-              </button>
+              </motion.button>
 
               {/* Status Messages */}
               {submitStatus === 'success' && (
@@ -302,11 +362,17 @@ const Contact: React.FC = () => {
                 </div>
               )}
             </form>
-          </div>
+          </motion.div>
         </div>
 
         {/* Quick Response Promise */}
-        <div className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 text-center">
+        <motion.div
+          className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <h3 className="text-xl font-bold text-gray-900 mb-3">
             Quick Response Guaranteed
           </h3>
@@ -314,9 +380,9 @@ const Contact: React.FC = () => {
             I understand that time is valuable. I commit to responding to all messages within 24 hours, 
             usually much sooner. Let's discuss how we can work together to bring your ideas to life!
           </p>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

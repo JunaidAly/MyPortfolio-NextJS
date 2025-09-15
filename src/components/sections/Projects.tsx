@@ -1,6 +1,9 @@
 "use client"
+import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FiExternalLink, FiGithub, FiCode, FiCalendar, FiEye, FiPlay } from 'react-icons/fi'
 import { useState } from 'react'
+import { staggerContainer, staggerItem } from '@/lib/animations'
 
 const Projects: React.FC = () => {
   const [filter, setFilter] = useState('all')
@@ -153,7 +156,13 @@ const Projects: React.FC = () => {
   }
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <motion.section
+      id="projects"
+      className="py-20 bg-gray-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -162,15 +171,21 @@ const Projects: React.FC = () => {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            A showcase of my recent work and projects, demonstrating my skills in 
+            A showcase of my recent work and projects, demonstrating my skills in
             modern web development and various technologies.
           </p>
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          {categories.map((category, index) => (
+            <motion.button
               key={category.key}
               onClick={() => setFilter(category.key)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
@@ -178,19 +193,35 @@ const Projects: React.FC = () => {
                   ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
                   : 'bg-white text-gray-600 border border-gray-300 hover:border-blue-500 hover:text-blue-600'
               }`}
+              variants={staggerItem}
+              custom={index}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
               {category.label}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
-            <div 
-              key={project.id}
-              className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          layout
+        >
+          <AnimatePresence>
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden transition-all duration-300"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)" }}
+                layout
+              >
               {/* Project Image */}
               <div className="relative h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
                 <div className="text-6xl text-gray-400">
@@ -291,12 +322,19 @@ const Projects: React.FC = () => {
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Call to Action */}
-        <div className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 text-center">
+        <motion.div
+          className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Interested in Working Together?
           </h3>
@@ -304,20 +342,22 @@ const Projects: React.FC = () => {
             I'm always excited to work on new projects and bring innovative ideas to life. 
             Let's discuss how we can collaborate on your next big project!
           </p>
-          <button
+          <motion.button
             onClick={() => {
               const element = document.querySelector('#contact')
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg transition-all duration-200"
+            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)" }}
+            whileTap={{ scale: 0.95 }}
           >
             Get In Touch
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

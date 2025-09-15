@@ -1,5 +1,8 @@
 "use client"
+import React from 'react'
+import { motion } from 'framer-motion'
 import { FiBriefcase, FiMapPin, FiCalendar, FiCheckCircle } from 'react-icons/fi'
+import { staggerContainer, staggerItem } from '@/lib/animations'
 
 const Experience: React.FC = () => {
   const experiences = [
@@ -46,7 +49,13 @@ const Experience: React.FC = () => {
   ]
 
   return (
-    <section id="experience" className="py-20 bg-gray-50">
+    <motion.section
+      id="experience"
+      className="py-20 bg-gray-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -60,17 +69,37 @@ const Experience: React.FC = () => {
         </div>
 
         {/* Experience Timeline */}
-        <div className="relative">
+        <motion.div
+          className="relative"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
           {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-purple-600 transform md:-translate-x-0.5"></div>
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 via-purple-500 to-indigo-600 transform md:-translate-x-0.5 rounded-full shadow-lg"></div>
 
           {experiences.map((exp, index) => (
-            <div key={index} className="relative mb-16 last:mb-0">
+            <motion.div
+              key={index}
+              className="relative mb-16 last:mb-0"
+              variants={staggerItem}
+              custom={index}
+            >
               {/* Timeline Dot */}
-              <div className="absolute left-6 md:left-1/2 w-4 h-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transform md:-translate-x-2 border-4 border-white shadow-lg"></div>
+              <div className="absolute left-6 md:left-1/2 w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transform md:-translate-x-3 border-4 border-white shadow-xl z-10">
+                <div className="absolute inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse"></div>
+              </div>
 
               {/* Experience Card */}
-              <div className={`ml-16 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+              <motion.div
+                className={`ml-16 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                whileHover={{ y: -5, boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)" }}
+              >
                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   {/* Card Header */}
                   <div className={`p-6 ${exp.status === 'Current Position' ? 'bg-gradient-to-r from-green-500 to-blue-600' : 'bg-gradient-to-r from-blue-600 to-purple-600'} text-white`}>
@@ -148,13 +177,19 @@ const Experience: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Current Status */}
-        <div className="mt-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 border border-green-200">
+        <motion.div
+          className="mt-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 border border-green-200"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Currently Available for New Opportunities
@@ -163,21 +198,23 @@ const Experience: React.FC = () => {
               I'm actively looking for new challenges and opportunities to grow my career in web development. 
               If you have an exciting project or position, I'd love to hear from you!
             </p>
-            <button
+            <motion.button
               onClick={() => {
                 const element = document.querySelector('#contact')
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth' })
                 }
               }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg transition-all duration-200"
+              whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
             >
               Let's Connect
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiMenu, FiX, FiHome, FiUser, FiBriefcase, FiFolder, FiMail } from 'react-icons/fi'
+import { Menu, X, Sparkles, UserRound, Zap, Rocket, Send } from 'lucide-react'
 import { slideInDown, staggerContainer, staggerItem, hoverScale } from '@/lib/animations'
 
 const Navbar: React.FC = () => {
@@ -22,11 +22,11 @@ const Navbar: React.FC = () => {
   }, [])
 
   const navItems = [
-    { name: 'Home', href: '/', icon: FiHome },
-    { name: 'About', href: '/about', icon: FiUser },
-    { name: 'Experience', href: '/experience', icon: FiBriefcase },
-    { name: 'Projects', href: '/projects', icon: FiFolder },
-    { name: 'Contact', href: '/contact', icon: FiMail },
+    { name: 'Home', href: '/', icon: Sparkles },
+    { name: 'About', href: '/about', icon: UserRound },
+    { name: 'Experience', href: '/experience', icon: Zap },
+    { name: 'Projects', href: '/projects', icon: Rocket },
+    { name: 'Contact', href: '/contact', icon: Send },
   ]
 
   const handleNavClick = (href: string) => {
@@ -150,7 +150,7 @@ const Navbar: React.FC = () => {
                     exit={{ rotate: 180, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <FiX size={20} />
+                    <X size={20} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -160,7 +160,7 @@ const Navbar: React.FC = () => {
                     exit={{ rotate: -180, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <FiMenu size={20} />
+                    <Menu size={20} />
                   </motion.div>
                 )}
               </AnimatePresence>
