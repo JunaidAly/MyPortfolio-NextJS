@@ -3,17 +3,19 @@ import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiExternalLink, FiGithub, FiCode, FiCalendar, FiEye, FiPlay } from 'react-icons/fi'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { staggerContainer, staggerItem } from '@/lib/animations'
 
 const Projects: React.FC = () => {
   const [filter, setFilter] = useState('all')
+  const router = useRouter()
 
   const projects = [
     {
       id: 1,
       title: 'Turkish E-commerce Platform',
       description: 'Turkish-based e-commerce website inspired by Sahibinden.com with customized design and layout. Features marketplace functionality with similar core features, responsive design, and user-friendly interface.',
-      image: '/api/placeholder/600/300',
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=300&fit=crop&auto=format',
       tech: ['React.js', 'Modern Frontend Technologies', 'Responsive Design'],
       category: 'web',
       status: 'ongoing',
@@ -26,14 +28,15 @@ const Projects: React.FC = () => {
       ],
       links: {
         live: 'https://turkish-ecommerce-demo.com',
-        github: null
+        github: null,
+        demo: null
       }
     },
     {
       id: 2,
       title: 'TeraBit IT Company Website',
       description: 'Developed and maintained the official website of TeraBit IT Company using modern React practices. Professional corporate website with responsive design and optimized performance.',
-      image: '/api/placeholder/600/300',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&auto=format',
       tech: ['React.js', 'Modern Development Practices', 'Performance Optimization'],
       category: 'web',
       status: 'completed',
@@ -46,14 +49,15 @@ const Projects: React.FC = () => {
       ],
       links: {
         live: 'https://terabit-company.com',
-        github: null
+        github: null,
+        demo: null
       }
     },
     {
       id: 3,
       title: 'Augmented Reality Admin Panel',
       description: 'Built the Admin Panel for an AR-based web application focusing on dynamic UI components and seamless user management features with AR integration support.',
-      image: '/api/placeholder/600/300',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&auto=format',
       tech: ['React.js', 'Dynamic UI Components', 'User Management'],
       category: 'admin',
       status: 'completed',
@@ -66,14 +70,15 @@ const Projects: React.FC = () => {
       ],
       links: {
         live: null,
-        github: null
+        github: null,
+        demo: null
       }
     },
     {
       id: 4,
       title: 'E-Commerce Store',
       description: 'Full-featured e-commerce store with shopping cart, admin dashboard, user authentication, product reviews, and order tracking functionality.',
-      image: '/api/placeholder/600/300',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=300&fit=crop&auto=format',
       tech: ['React.js', 'Redux', 'Tailwind CSS', 'Formik', 'YUP'],
       category: 'ecommerce',
       status: 'completed',
@@ -85,15 +90,16 @@ const Projects: React.FC = () => {
         'Product reviews & order tracking'
       ],
       links: {
-        live: 'https://ecommerce-store-demo.com',
-        github: 'https://github.com/junaidali/ecommerce-store'
+        live: 'https://capable-torrone-467511.netlify.app/',
+        github: 'https://github.com/junaidali/ecommerce-store',
+        demo: null
       }
     },
     {
       id: 5,
       title: 'Tea Station',
       description: 'Product catalog website with responsive UI and mobile-first responsive design implementation. Clean and modern design focusing on user experience.',
-      image: '/api/placeholder/600/300',
+      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=300&fit=crop&auto=format',
       tech: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
       category: 'web',
       status: 'completed',
@@ -105,15 +111,16 @@ const Projects: React.FC = () => {
         'Clean modern layout'
       ],
       links: {
-        live: 'https://tea-station-demo.com',
-        github: 'https://github.com/junaidali/tea-station'
+        live: 'https://snazzy-syrniki-96c61e.netlify.app/',
+        github: 'https://github.com/junaidali/tea-station',
+        demo: null
       }
     },
     {
       id: 6,
       title: 'Organization Task Tracker',
       description: 'Comprehensive task management system with Angular frontend and Laravel backend. Features task creation, assignment, tracking, notifications, role-based access, and team collaboration.',
-      image: '/api/placeholder/600/300',
+      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=300&fit=crop&auto=format',
       tech: ['Angular', 'Laravel', 'MySQL', 'PHP'],
       category: 'fullstack',
       status: 'completed',
@@ -125,9 +132,133 @@ const Projects: React.FC = () => {
         'Team collaboration tools'
       ],
       links: {
-        live: null,
+        live: 'https://www.youtube.com/watch?v=uwpQyfTYeJ0',
         github: null,
-        demo: 'https://task-tracker-demo-video.com'
+        demo: null
+      }
+    },
+    {
+      id: 7,
+      title: 'Task Management App (MEAN Stack)',
+      description: 'Built using the MEAN Stack (MongoDB, Express.js, Angular, Node.js) for seamless task tracking with advanced user management and analytics.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop&auto=format',
+      tech: ['MongoDB', 'Express.js', 'Angular', 'Node.js'],
+      category: 'fullstack',
+      status: 'completed',
+      period: '2023',
+      features: [
+        'User authentication & role-based access control',
+        'Task creation, assignment & real-time updates',
+        'Interactive dashboard with analytics'
+      ],
+      links: {
+        live: null,
+        github: 'https://github.com/JunaidAly/crud-task-fe.git',
+        demo: null
+      }
+    },
+    {
+      id: 8,
+      title: 'Attendance Management System',
+      description: 'Developed using Frontend (HTML, CSS) and Backend (MongoDB, Express.js, Node.js) for efficient attendance tracking with role-based authentication.',
+      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=300&fit=crop&auto=format',
+      tech: ['HTML', 'CSS', 'MongoDB', 'Express.js', 'Node.js'],
+      category: 'fullstack',
+      status: 'completed',
+      period: '2023',
+      features: [
+        'Role-based user authentication (Admin, Teacher, Student)',
+        'Automated attendance tracking with real-time updates',
+        'Detailed reports & analytics for attendance monitoring'
+      ],
+      links: {
+        live: null,
+        github: 'https://github.com/JunaidAly/Attendance-Management-System.git',
+        demo: null
+      }
+    },
+    {
+      id: 9,
+      title: 'Cargo Booking System',
+      description: 'Developed using Laravel, this system streamlines the process of managing and scheduling cargo shipments efficiently with comprehensive logistics coordination.',
+      image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=300&fit=crop&auto=format',
+      tech: ['Laravel', 'PHP', 'MySQL'],
+      category: 'fullstack',
+      status: 'completed',
+      period: '2023',
+      features: [
+        'Real-time cargo tracking & shipment management',
+        'Seamless integration with payment gateways',
+        'Automated notifications & detailed reporting',
+        'Route optimization for efficient logistics coordination'
+      ],
+      links: {
+        live: null,
+        github: 'https://github.com/JunaidAly/Cargo_Booking_System_in_Laravel.git',
+        demo: null
+      }
+    },
+    {
+      id: 10,
+      title: 'Veterinary Management System',
+      description: 'This project explores fundamental concepts of Object-Oriented Programming (OOP) in Java. Implements core Java features to enhance understanding and practical application.',
+      image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&h=300&fit=crop&auto=format',
+      tech: ['Java', 'OOP', 'GUI', 'File Handling'],
+      category: 'desktop',
+      status: 'completed',
+      period: '2023',
+      features: [
+        'File Handling for data storage & retrieval',
+        'Exception Handling to manage runtime errors',
+        'Graphical User Interface (GUI) implementation in Java',
+        'Practical demonstration of OOP principles'
+      ],
+      links: {
+        live: null,
+        github: 'https://github.com/JunaidAly/Veterinary_Management_System_in_Java_OOP.git',
+        demo: null
+      }
+    },
+    {
+      id: 11,
+      title: 'Contract Management System',
+      description: 'A desktop application built with C# in Visual Studio for managing contracts efficiently. The system enables CRUD operations with a MySQL database.',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=300&fit=crop&auto=format',
+      tech: ['C#', 'Visual Studio', 'MySQL', 'WinForms'],
+      category: 'desktop',
+      status: 'completed',
+      period: '2023',
+      features: [
+        'Create, Read, Update, and Delete (CRUD) contracts',
+        'MySQL database integration for secure data storage',
+        'User-friendly C# Windows Forms (WinForms) interface',
+        'Data validation & exception handling'
+      ],
+      links: {
+        live: null,
+        github: 'https://github.com/JunaidAly/Contract_management_system_in_c-_desktop_app.git',
+        demo: null
+      }
+    },
+    {
+      id: 12,
+      title: 'Mobile Applications (React Native)',
+      description: 'Developed multiple mobile applications using React Native, providing cross-platform compatibility for both Android and iOS with high performance and responsive UI.',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=300&fit=crop&auto=format',
+      tech: ['React Native', 'JavaScript', 'Cross-platform'],
+      category: 'mobile',
+      status: 'completed',
+      period: '2023',
+      features: [
+        'Cross-platform apps for Android & iOS',
+        'API integration for real-time data fetching',
+        'Smooth UI/UX with custom components',
+        'Performance optimization for fast and efficient execution'
+      ],
+      links: {
+        live: null,
+        github: 'https://github.com/JunaidAly/Mobile-Application-Development.git',
+        demo: null
       }
     }
   ]
@@ -138,6 +269,8 @@ const Projects: React.FC = () => {
     { key: 'ecommerce', label: 'E-Commerce' },
     { key: 'fullstack', label: 'Full Stack' },
     { key: 'admin', label: 'Admin Panels' },
+    { key: 'desktop', label: 'Desktop Apps' },
+    { key: 'mobile', label: 'Mobile Apps' },
   ]
 
   const filteredProjects = filter === 'all' 
@@ -343,12 +476,7 @@ const Projects: React.FC = () => {
             Let's discuss how we can collaborate on your next big project!
           </p>
           <motion.button
-            onClick={() => {
-              const element = document.querySelector('#contact')
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
+            onClick={() => router.push('/contact')}
             className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg transition-all duration-200"
             whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)" }}
             whileTap={{ scale: 0.95 }}
