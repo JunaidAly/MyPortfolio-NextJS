@@ -6,10 +6,38 @@ import { FiDownload, FiExternalLink, FiGithub, FiLinkedin, FiArrowDown } from 'r
 import { fadeIn, slideInLeft, slideInRight, staggerContainer, staggerItem, hoverScale, hoverFloat } from '@/lib/animations'
 import AnimatedText from '@/components/ui/AnimatedText'
 import ParticleBackground from '@/components/ui/ParticleBackground'
+import dynamic from 'next/dynamic'
 import { useRef } from 'react'
+
+// Import 3D Avatar and 2D fallback
+const Avatar3D = dynamic(() => import('@/components/ui/Avatar3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[700px] bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl overflow-hidden flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading 3D Avatar...</p>
+      </div>
+    </div>
+  )
+})
+
+const Skills2D = dynamic(() => import('@/components/ui/Skills2D'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[600px] bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl overflow-hidden flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading Skills...</p>
+      </div>
+    </div>
+  )
+})
 
 const Hero: React.FC = () => {
   const [currentRole, setCurrentRole] = useState(0)
+  const [use3D, setUse3D] = useState(true)
+  const [threeDError, setThreeDError] = useState(false)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   
@@ -43,6 +71,7 @@ const Hero: React.FC = () => {
   }
 
   return (
+    <>
     <section ref={ref} id="home" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
       {/* Animated Background */}
       <motion.div 
@@ -346,13 +375,13 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Scroll Down Indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.6 }}
         >
-          <motion.div 
+          <motion.div
             className="flex flex-col items-center text-gray-600"
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -363,6 +392,74 @@ const Hero: React.FC = () => {
         </motion.div>
       </div>
     </section>
+
+    {/* Skills & Hobbies Section */}
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <motion.div
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="text-center mb-12">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            My Skills & Interests{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+              3D Experience
+            </span>
+          </motion.h2>
+          <motion.p
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            Explore my technical skills and personal interests with my 3D animated avatar.
+            Drag to rotate, zoom to get closer, and discover what drives my passion for development.
+          </motion.p>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          {/* Toggle Button */}
+          <div className="flex justify-center mb-6">
+            <button
+              onClick={() => setUse3D(!use3D)}
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+            >
+              Switch to {use3D ? '2D' : '3D'} View
+            </button>
+          </div>
+
+          {/* Render 3D or 2D based on state */}
+          {use3D && !threeDError ? (
+            <div
+              onError={() => {
+                console.log('3D Error occurred, switching to 2D')
+                setThreeDError(true)
+              }}
+            >
+              <Avatar3D />
+            </div>
+          ) : (
+            <Skills2D />
+          )}
+        </motion.div>
+      </motion.div>
+    </section>
+    </>
   )
 }
 
