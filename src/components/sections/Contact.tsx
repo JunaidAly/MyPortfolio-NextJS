@@ -1,12 +1,13 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { 
-  FiMail, 
-  FiPhone, 
-  FiMapPin, 
-  FiSend, 
-  FiUser, 
+import emailjs from '@emailjs/browser'
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiSend,
+  FiUser,
   FiMessageSquare,
   FiGithub,
   FiLinkedin,
@@ -29,9 +30,16 @@ const Contact: React.FC = () => {
     subject: '',
     message: ''
   })
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'E3qkJpavCm_7nv8Bw'
+    emailjs.init(publicKey)
+    console.log('EmailJS initialized with public key:', publicKey)
+  }, [])
 
   const contactInfo = [
     {
@@ -88,13 +96,33 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // EmailJS configuration - use the actual values directly
+      const serviceId = 'service_v0jnvxb'
+      const templateId = 'template_h3dciu9'
+
+      // Template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Junaid Ali', // Your name
+      }
+
+      // Send email using EmailJS (already initialized in useEffect)
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams
+      )
+
+      console.log('Email sent successfully:', result)
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
     } catch (error) {
+      console.error('Email sending failed:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -482,7 +510,6 @@ const Contact: React.FC = () => {
                 </label>
                 <div className="relative">
                   <div className="absolute top-3 left-3 pointer-events-none">
-                    <FiMessageSquare className="h-5 w-5 text-gray-400" />
                   </div>
                   <motion.textarea
                     id="message"
