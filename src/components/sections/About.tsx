@@ -1,5 +1,5 @@
 "use client"
-import { FiAward, FiBook, FiCode, FiHeart, FiDownload } from 'react-icons/fi'
+import { FiAward, FiBook, FiCode, FiHeart, FiDownload, FiLayers, FiBox } from 'react-icons/fi'
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
@@ -16,27 +16,27 @@ const About: React.FC = () => {
     link.click()
   }
 
-  const education = [
+  const achievements = [
     {
-      degree: 'BS Computer Science',
-      institution: 'COMSATS University Islamabad',
-      period: '2020 – 2024',
-      score: 'CGPA: 2.74/4.0',
-      location: 'Islamabad',
+      title: 'React Developer',
+      company: 'TeraBit IT Company',
+      period: '2024 – Present',
+      description: 'Currently working on modern web applications using React.js and Next.js',
+      icon: 'FiCode',
     },
     {
-      degree: 'Intermediate in Computer Science (ICS)',
-      institution: 'Punjab Group Of Colleges',
-      period: '2018 – 2020',
-      score: 'Percentage: 74%',
-      location: 'Rawalpindi',
+      title: 'Full Stack Development',
+      company: 'Personal Projects',
+      period: '2023 – Present',
+      description: 'Built 20+ projects using MERN stack with modern UI/UX designs',
+      icon: 'FiLayers',
     },
     {
-      degree: 'Matriculation in Science',
-      institution: 'Margalla Learners School Islamabad',
-      period: '2016 – 2018',
-      score: 'Percentage: 80%',
-      location: 'Islamabad',
+      title: '3D Web Experiences',
+      company: 'Portfolio Innovation',
+      period: '2024',
+      description: 'Integrated Three.js and React Three Fiber for immersive web experiences',
+      icon: 'FiBox',
     },
   ]
 
@@ -352,22 +352,22 @@ const About: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Education */}
+          {/* Right Column - Career Highlights */}
           <motion.div
             variants={slideInRight}
           >
-            <motion.div 
+            <motion.div
               className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-lg"
               {...hoverFloat}
             >
-              <motion.div 
+              <motion.div
                 className="bg-gradient-to-r from-blue-600 to-purple-600 p-6"
-                whileHover={{ 
-                  backgroundImage: "linear-gradient(to right, #8b5cf6, #ec4899)" 
+                whileHover={{
+                  backgroundImage: "linear-gradient(to right, #8b5cf6, #ec4899)"
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.h3 
+                <motion.h3
                   className="text-xl font-semibold text-white flex items-center"
                   whileHover={{ scale: 1.02 }}
                 >
@@ -375,80 +375,82 @@ const About: React.FC = () => {
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <FiBook className="mr-3" />
+                    <FiAward className="mr-3" />
                   </motion.div>
-                  Education
+                  Career Highlights
                 </motion.h3>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="p-6 space-y-6"
                 variants={staggerContainer}
                 initial="initial"
                 animate={isInView ? "animate" : "initial"}
               >
-                {education.map((edu, index) => (
-                  <motion.div 
-                    key={index} 
+                {achievements.map((achievement, index) => (
+                  <motion.div
+                    key={index}
                     className={`relative pb-6 ${
-                      index !== education.length - 1 ? 'border-b border-gray-200' : ''
+                      index !== achievements.length - 1 ? 'border-b border-gray-200' : ''
                     }`}
                     variants={{
                       initial: { opacity: 0, x: 50 },
-                      animate: { 
-                        opacity: 1, 
+                      animate: {
+                        opacity: 1,
                         x: 0,
                         transition: { delay: index * 0.2, duration: 0.5 }
                       }
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       x: 10,
                       transition: { duration: 0.2 }
                     }}
                   >
-                    {/* Animated Timeline dot */}
-                    <motion.div 
-                      className="absolute left-0 top-0 w-3 h-3 bg-blue-600 rounded-full"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5 + index * 0.2, duration: 0.3 }}
-                      whileHover={{ 
-                        scale: 1.5,
-                        boxShadow: "0 0 20px rgba(59, 130, 246, 0.6)"
+                    {/* Animated Timeline icon */}
+                    <motion.div
+                      className="absolute left-0 top-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm"
+                      initial={{ scale: 0, rotate: 180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+                      whileHover={{
+                        scale: 1.2,
+                        boxShadow: "0 0 20px rgba(59, 130, 246, 0.6)",
+                        rotate: 360
                       }}
-                    />
-                    
-                    <motion.div 
-                      className="ml-6 cursor-pointer p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                    >
+                      {achievement.icon === 'FiCode' && <FiCode size={16} />}
+                      {achievement.icon === 'FiLayers' && <FiLayers size={16} />}
+                      {achievement.icon === 'FiBox' && <FiBox size={16} />}
+                    </motion.div>
+
+                    <motion.div
+                      className="ml-12 cursor-pointer p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300"
                       whileHover={{ scale: 1.02 }}
                     >
-                      <motion.h4 
+                      <motion.h4
                         className="font-semibold text-lg text-gray-900"
                         whileHover={{ color: "#2563eb" }}
                       >
-                        {edu.degree}
+                        {achievement.title}
                       </motion.h4>
-                      <motion.p 
+                      <motion.p
                         className="text-blue-600 font-medium"
                         whileHover={{ scale: 1.02 }}
                       >
-                        {edu.institution}
+                        {achievement.company}
                       </motion.p>
-                      <div className="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-600 mt-2">
-                        <motion.span
-                          whileHover={{ fontWeight: "600" }}
-                        >
-                          {edu.period}
-                        </motion.span>
-                        <motion.span
-                          whileHover={{ fontWeight: "600", color: "#16a34a" }}
-                        >
-                          {edu.score}
-                        </motion.span>
-                      </div>
-                      <p className="text-sm text-gray-500 mt-1">
-                        {edu.location}
-                      </p>
+                      <motion.span
+                        className="text-sm text-gray-600 mt-1 block"
+                        whileHover={{ fontWeight: "600" }}
+                      >
+                        {achievement.period}
+                      </motion.span>
+                      <motion.p
+                        className="text-gray-700 text-sm mt-2 leading-relaxed"
+                        whileHover={{ color: "#374151" }}
+                      >
+                        {achievement.description}
+                      </motion.p>
                     </motion.div>
                   </motion.div>
                 ))}
