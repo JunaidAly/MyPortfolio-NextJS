@@ -1,114 +1,92 @@
 "use client"
 import { useRef, useState, useEffect, Suspense } from 'react'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { Html, OrbitControls, useGLTF, Text3D, Center } from '@react-three/drei'
-import * as THREE from 'three'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Html, OrbitControls, useFBX, useAnimations } from '@react-three/drei'
 
-interface SkillOrbitProps {
+interface SkillLabelProps {
   position: [number, number, number]
   text: string
   color: string
-  radius?: number
+  isHobby?: boolean
 }
 
-const SkillOrbit: React.FC<SkillOrbitProps> = ({ position, text, color, radius = 0.3 }) => {
-  const meshRef = useRef<THREE.Mesh>(null)
+const SkillLabel: React.FC<SkillLabelProps> = ({ position, text, color, isHobby = false }) => {
   const [hovered, setHovered] = useState(false)
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.2
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.2
-    }
-  })
-
   return (
-    <group position={position}>
-      <mesh
-        ref={meshRef}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        scale={hovered ? 1.3 : 1}
-      >
-        <sphereGeometry args={[radius, 16, 16]} />
-        <meshStandardMaterial
-          color={color}
-          transparent
-          opacity={0.9}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </mesh>
-
-      <Html
-        position={[0, radius + 0.8, 0]}
-        center
-        distanceFactor={6}
+    <Html
+      position={position}
+      center
+      distanceFactor={8}
+      style={{
+        pointerEvents: 'auto',
+        userSelect: 'none',
+      }}
+    >
+      <div
+        className={`px-6 py-3 rounded-xl text-base font-bold text-white shadow-2xl border-2 transition-all duration-300 cursor-pointer ${
+          hovered ? 'transform scale-110' : ''
+        } ${isHobby ? 'border-white/30' : 'border-white/50'}`}
         style={{
-          pointerEvents: 'none',
-          userSelect: 'none',
+          backgroundColor: color,
+          boxShadow: `0 10px 30px ${color}40`,
         }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
-        <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-gray-800 shadow-xl border border-gray-200">
-          {text}
-        </div>
-      </Html>
-    </group>
+        {text}
+      </div>
+    </Html>
   )
 }
 
-// Simple 3D Avatar (we'll replace this with your actual model later)
+// Your actual 3D Avatar from Ready Player Me
 const Avatar3DModel: React.FC = () => {
-  const meshRef = useRef<THREE.Group>(null)
+  const fbx = useFBX('/3DNew/rp_manuel_animated_001_dancing.fbx')
+  const { actions } = useAnimations(fbx.animations, fbx)
+  const modelRef = useRef<any>(null)
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Gentle breathing animation
-      meshRef.current.scale.y = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.02
-      // Slight rotation
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1
+  useEffect(() => {
+    if (fbx) {
+      // Increase the model size significantly
+      fbx.scale.setScalar(0.035) // Further increased model size
+      fbx.position.y = -1.8 // Adjust position for larger model
+
+      // Reset model rotations
+      fbx.rotation.x = 0
+      fbx.rotation.y = 0
+      fbx.rotation.z = 0
+
+      // Traverse and set up materials
+      fbx.traverse((child: any) => {
+        if (child.isMesh) {
+          child.castShadow = true
+          child.receiveShadow = true
+          // Ensure materials are properly set up
+          if (child.material) {
+            child.material.needsUpdate = true
+          }
+        }
+      })
     }
-  })
+  }, [fbx])
+
+  useEffect(() => {
+    // Play the dancing animation
+    if (actions) {
+      const actionNames = Object.keys(actions)
+      if (actionNames.length > 0) {
+        const danceAction = actions[actionNames[0]]
+        if (danceAction) {
+          danceAction.play()
+        }
+      }
+    }
+  }, [actions])
 
   return (
-    <group ref={meshRef} position={[0, -1, 0]}>
-      {/* Head */}
-      <mesh position={[0, 1.6, 0]}>
-        <sphereGeometry args={[0.25, 16, 16]} />
-        <meshStandardMaterial color="#fdbcb4" />
-      </mesh>
-
-      {/* Body */}
-      <mesh position={[0, 1, 0]}>
-        <cylinderGeometry args={[0.3, 0.25, 0.8, 8]} />
-        <meshStandardMaterial color="#3b82f6" />
-      </mesh>
-
-      {/* Arms */}
-      <mesh position={[-0.4, 1.2, 0]} rotation={[0, 0, -0.3]}>
-        <cylinderGeometry args={[0.08, 0.08, 0.6, 8]} />
-        <meshStandardMaterial color="#fdbcb4" />
-      </mesh>
-      <mesh position={[0.4, 1.2, 0]} rotation={[0, 0, 0.3]}>
-        <cylinderGeometry args={[0.08, 0.08, 0.6, 8]} />
-        <meshStandardMaterial color="#fdbcb4" />
-      </mesh>
-
-      {/* Legs */}
-      <mesh position={[-0.15, 0.3, 0]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.8, 8]} />
-        <meshStandardMaterial color="#2563eb" />
-      </mesh>
-      <mesh position={[0.15, 0.3, 0]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.8, 8]} />
-        <meshStandardMaterial color="#2563eb" />
-      </mesh>
-
-      {/* Simple hair */}
-      <mesh position={[0, 1.75, 0]}>
-        <sphereGeometry args={[0.28, 8, 8]} />
-        <meshStandardMaterial color="#4a4a4a" />
-      </mesh>
+    <group ref={modelRef}>
+      <primitive object={fbx} />
     </group>
   )
 }
@@ -121,21 +99,21 @@ const Avatar3D: React.FC = () => {
   }, [])
 
   const skills = [
-    { text: "React", position: [3, 2, 0] as [number, number, number], color: "#61dafb" },
-    { text: "Node.js", position: [-3, 2, 0] as [number, number, number], color: "#68a063" },
-    { text: "TypeScript", position: [0, 3, 2] as [number, number, number], color: "#3178c6" },
-    { text: "MongoDB", position: [2, -1, 2] as [number, number, number], color: "#4db33d" },
-    { text: "Express", position: [-2, -1, 2] as [number, number, number], color: "#68a063" },
-    { text: "Next.js", position: [0, -2, -2] as [number, number, number], color: "#000000" },
-    { text: "JavaScript", position: [3, 0, -2] as [number, number, number], color: "#f7df1e" },
-    { text: "Python", position: [-3, 0, -2] as [number, number, number], color: "#3776ab" },
+    { text: "React", position: [5, 1.5, 3] as [number, number, number], color: "#61dafb" },
+    { text: "Node.js", position: [-5, 1.5, 3] as [number, number, number], color: "#68a063" },
+    { text: "TypeScript", position: [4, 3, -0.5] as [number, number, number], color: "#3178c6" },
+    { text: "MongoDB", position: [-4, 3, -0.5] as [number, number, number], color: "#4db33d" },
+    { text: "Express", position: [5.5, 0, 1] as [number, number, number], color: "#68a063" },
+    { text: "Next.js", position: [-5.5, 0, 1] as [number, number, number], color: "#000000" },
+    { text: "JavaScript", position: [3, 4, 2] as [number, number, number], color: "#f7df1e" },
+    { text: "Python", position: [-3, 4, 2] as [number, number, number], color: "#3776ab" },
   ]
 
   const hobbies = [
-    { text: "Gaming", position: [0, 2, -3] as [number, number, number], color: "#ff6b6b" },
-    { text: "Reading", position: [2, -1, -3] as [number, number, number], color: "#4ecdc4" },
-    { text: "Coding", position: [-2, -1, -3] as [number, number, number], color: "#45b7d1" },
-    { text: "Learning", position: [0, 0, 3] as [number, number, number], color: "#96ceb4" },
+    { text: "Gaming", position: [0, 3.5, -4] as [number, number, number], color: "#ff6b6b" },
+    { text: "Reading", position: [4, 0.5, -4] as [number, number, number], color: "#4ecdc4" },
+    { text: "Coding", position: [-4, 0.5, -4] as [number, number, number], color: "#45b7d1" },
+    { text: "Learning", position: [0, -0.5, 5] as [number, number, number], color: "#96ceb4" },
   ]
 
   if (!isClient) {
@@ -150,7 +128,7 @@ const Avatar3D: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-[700px] bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl overflow-hidden relative">
+    <div className="w-full max-w-6xl mx-auto h-[700px] rounded-3xl overflow-hidden relative bg-gradient-to-br from-blue-50 to-purple-50 shadow-2xl">
       <Suspense fallback={
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center">
@@ -160,43 +138,65 @@ const Avatar3D: React.FC = () => {
         </div>
       }>
         <Canvas
-          camera={{ position: [0, 2, 8], fov: 60 }}
+          camera={{ position: [0, 2, 12], fov: 50 }}
           style={{ background: 'transparent' }}
+          shadows
+          gl={{ antialias: true }}
         >
-          {/* Lighting */}
-          <ambientLight intensity={0.6} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -5]} intensity={0.5} />
+          {/* Enhanced Lighting for 3D Avatar */}
+          <ambientLight intensity={0.4} />
+          <directionalLight
+            position={[10, 10, 5]}
+            intensity={1.2}
+            castShadow
+            shadow-mapSize-width={2048}
+            shadow-mapSize-height={2048}
+          />
+          <pointLight position={[-5, 5, 5]} intensity={0.6} color="#61dafb" />
+          <pointLight position={[5, 5, -5]} intensity={0.6} color="#3b82f6" />
+          <spotLight
+            position={[0, 10, 0]}
+            intensity={0.8}
+            angle={0.3}
+            penumbra={0.5}
+            castShadow
+          />
 
           {/* 3D Avatar */}
           <Avatar3DModel />
 
-          {/* Skills orbiting around */}
+          {/* Skills around the avatar */}
           {skills.map((skill, index) => (
-            <SkillOrbit
+            <SkillLabel
               key={`skill-${index}`}
               position={skill.position}
               text={skill.text}
               color={skill.color}
-              radius={0.3}
+              isHobby={false}
             />
           ))}
 
-          {/* Hobbies */}
+          {/* Hobbies around the avatar */}
           {hobbies.map((hobby, index) => (
-            <SkillOrbit
+            <SkillLabel
               key={`hobby-${index}`}
               position={hobby.position}
               text={hobby.text}
               color={hobby.color}
-              radius={0.25}
+              isHobby={true}
             />
           ))}
 
-          {/* Platform */}
-          <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <circleGeometry args={[2, 32]} />
-            <meshStandardMaterial color="#e5e7eb" transparent opacity={0.5} />
+          {/* Platform with shadows */}
+          <mesh position={[0, -1.8, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+            <circleGeometry args={[6, 32]} />
+            <meshStandardMaterial
+              color="#f3f4f6"
+              transparent
+              opacity={0.8}
+              roughness={0.8}
+              metalness={0.1}
+            />
           </mesh>
 
           <OrbitControls
@@ -207,8 +207,8 @@ const Avatar3D: React.FC = () => {
             autoRotateSpeed={1}
             maxPolarAngle={Math.PI / 2.2}
             minPolarAngle={Math.PI / 3}
-            maxDistance={15}
-            minDistance={5}
+            maxDistance={18}
+            minDistance={8}
           />
         </Canvas>
       </Suspense>
@@ -223,14 +223,6 @@ const Avatar3D: React.FC = () => {
         </div>
       </div>
 
-      {/* Model Info */}
-      <div className="absolute bottom-4 left-4">
-        <div className="bg-white/90 backdrop-blur-sm px-4 py-3 rounded-lg text-sm text-gray-700 shadow-lg">
-          <p className="font-medium">💡 Coming Soon:</p>
-          <p>Replace with your actual</p>
-          <p>3D animated avatar!</p>
-        </div>
-      </div>
 
       {/* Legend */}
       <div className="absolute bottom-4 right-4 space-y-2">
