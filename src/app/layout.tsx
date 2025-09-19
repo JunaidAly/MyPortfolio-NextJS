@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Junaid Ali - Full Stack Developer',
     description: 'BS Computer Science graduate passionate about MERN stack development.',
     type: 'website',
-    url: 'https://junaidali.dev',
+    url: 'https://junaidaly.vercel.app/',
   },
   twitter: {
     card: 'summary_large_image',
