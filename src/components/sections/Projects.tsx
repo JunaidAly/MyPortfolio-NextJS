@@ -27,7 +27,7 @@ const Projects: React.FC = () => {
         'Customized Turkish design'
       ],
       links: {
-        live: 'https://turkish-ecommerce-demo.com',
+        live: 'https://chimerical-moxie-c1e96e.netlify.app/',
         github: null,
         demo: null
       }
@@ -48,7 +48,7 @@ const Projects: React.FC = () => {
         'Modern React practices'
       ],
       links: {
-        live: 'https://terabit-company.com',
+        live: 'https://terabit-site.vercel.app/',
         github: null,
         demo: null
       }
@@ -91,7 +91,7 @@ const Projects: React.FC = () => {
       ],
       links: {
         live: 'https://capable-torrone-467511.netlify.app/',
-        github: 'https://github.com/junaidali/ecommerce-store',
+        github: 'https://github.com/JunaidAly/E-Commerce-Website-React-JS.git',
         demo: null
       }
     },
@@ -153,7 +153,7 @@ const Projects: React.FC = () => {
       ],
       links: {
         live: null,
-        github: 'https://github.com/JunaidAly/crud-task-fe.git',
+        github: 'https://github.com/JunaidAly/crud-task-api.git',
         demo: null
       }
     },

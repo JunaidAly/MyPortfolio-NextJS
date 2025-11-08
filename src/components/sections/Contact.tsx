@@ -69,19 +69,19 @@ const Contact: React.FC = () => {
     {
       name: 'GitHub',
       icon: FiGithub,
-      href: 'https://github.com/junaidali',
+      href: 'https://github.com/JunaidAly',
       color: 'hover:bg-gray-900'
     },
     {
       name: 'LinkedIn',
       icon: FiLinkedin,
-      href: 'https://linkedin.com/in/junaidali',
+      href: 'https://www.linkedin.com/in/junaid-ali-8679871ab/',
       color: 'hover:bg-blue-600'
     },
     {
       name: 'Portfolio',
       icon: FiExternalLink,
-      href: '#',
+      href: 'https://www.instagram.com/junaidaly2054?igsh=dHY4ZzVldHY1eW8%3D&utm_source=qr',
       color: 'hover:bg-purple-600'
     }
   ]
