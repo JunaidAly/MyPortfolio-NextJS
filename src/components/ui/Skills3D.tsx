@@ -16,9 +16,10 @@ const SkillBubble: React.FC<SkillBubbleProps> = ({ position, text, color, size =
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.1
+      const time = state.clock.elapsedTime
+      meshRef.current.rotation.x = Math.sin(time * 0.5) * 0.1
+      meshRef.current.rotation.y = Math.sin(time * 0.3) * 0.1
+      meshRef.current.position.y = position[1] + Math.sin(time + position[0]) * 0.1
     }
   })
 
@@ -30,7 +31,7 @@ const SkillBubble: React.FC<SkillBubbleProps> = ({ position, text, color, size =
         onPointerOut={() => setHovered(false)}
         scale={hovered ? 1.2 : 1}
       >
-        <sphereGeometry args={[size, 16, 16]} />
+        <sphereGeometry args={[size, 8, 8]} />
         <meshStandardMaterial
           color={color}
           transparent
@@ -60,7 +61,7 @@ interface CentralAvatarProps {
   imageUrl: string
 }
 
-const CentralAvatar: React.FC<CentralAvatarProps> = ({ imageUrl }) => {
+const CentralAvatar: React.FC<CentralAvatarProps> = () => {
   const meshRef = useRef<any>(null)
 
   useFrame((state) => {
@@ -72,7 +73,7 @@ const CentralAvatar: React.FC<CentralAvatarProps> = ({ imageUrl }) => {
   return (
     <group position={[0, 0, 0]}>
       <mesh ref={meshRef}>
-        <sphereGeometry args={[1, 32, 32]} />
+        <sphereGeometry args={[1, 16, 16]} />
         <meshStandardMaterial
           color="#3b82f6"
           roughness={0.1}
@@ -81,7 +82,7 @@ const CentralAvatar: React.FC<CentralAvatarProps> = ({ imageUrl }) => {
       </mesh>
       {/* Glowing ring around avatar */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.2, 1.4, 32]} />
+        <ringGeometry args={[1.2, 1.4, 16]} />
         <meshBasicMaterial
           color="#3b82f6"
           transparent
@@ -141,10 +142,12 @@ const Skills3D: React.FC = () => {
         <Canvas
           camera={{ position: [0, 0, 8], fov: 60 }}
           style={{ background: 'transparent' }}
+          dpr={[1, 1.5]}
+          performance={{ min: 0.5 }}
+          gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
         >
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={0.8} />
-          <directionalLight position={[-10, -10, -5]} intensity={0.5} />
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[10, 10, 10]} intensity={0.4} />
 
           {/* Central Avatar */}
           <CentralAvatar imageUrl="/myprofile.jpg" />

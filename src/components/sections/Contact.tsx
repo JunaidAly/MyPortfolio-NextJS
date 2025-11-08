@@ -133,10 +133,10 @@ const Contact: React.FC = () => {
   return (
     <motion.section
       id="contact"
-      className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden"
+      className="py-12 md:py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-visible min-h-screen"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {/* Animated Background Decorations */}
@@ -183,7 +183,7 @@ const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16 relative z-10"
+          className="text-center mb-8 md:mb-16 relative z-10"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -236,10 +236,10 @@ const Contact: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Information */}
           <motion.div
-            className="space-y-8 relative z-10"
+            className="space-y-6 md:space-y-8 relative z-10"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -391,7 +391,7 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-white/30 shadow-2xl relative z-10 overflow-hidden max-h-fit"
+            className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-10 border border-white/30 shadow-2xl relative z-10"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
