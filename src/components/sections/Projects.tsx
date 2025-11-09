@@ -5,6 +5,7 @@ import { FiExternalLink, FiGithub, FiCode, FiCalendar, FiEye, FiPlay } from 'rea
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { staggerContainer, staggerItem } from '@/lib/animations'
+import CloudinaryVideoPlayer from '@/components/ui/CloudinaryVideoPlayer'
 
 const Projects: React.FC = () => {
   const [filter, setFilter] = useState('all')
@@ -16,6 +17,7 @@ const Projects: React.FC = () => {
       title: 'Turkish E-commerce Platform',
       description: 'Turkish-based e-commerce website inspired by Sahibinden.com with customized design and layout. Features marketplace functionality with similar core features, responsive design, and user-friendly interface.',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'online_selling_app_ssogjx',
       tech: ['React.js', 'Modern Frontend Technologies', 'Responsive Design'],
       category: 'web',
       status: 'ongoing',
@@ -37,6 +39,7 @@ const Projects: React.FC = () => {
       title: 'TeraBit IT Company Website',
       description: 'Developed and maintained the official website of TeraBit IT Company using modern React practices. Professional corporate website with responsive design and optimized performance.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null, // Add your Cloudinary video public ID here
       tech: ['React.js', 'Modern Development Practices', 'Performance Optimization'],
       category: 'web',
       status: 'completed',
@@ -58,6 +61,7 @@ const Projects: React.FC = () => {
       title: 'Augmented Reality Admin Panel',
       description: 'Built the Admin Panel for an AR-based web application focusing on dynamic UI components and seamless user management features with AR integration support.',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['React.js', 'Dynamic UI Components', 'User Management'],
       category: 'admin',
       status: 'completed',
@@ -79,6 +83,7 @@ const Projects: React.FC = () => {
       title: 'E-Commerce Store',
       description: 'Full-featured e-commerce store with shopping cart, admin dashboard, user authentication, product reviews, and order tracking functionality.',
       image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['React.js', 'Redux', 'Tailwind CSS', 'Formik', 'YUP'],
       category: 'ecommerce',
       status: 'completed',
@@ -100,6 +105,7 @@ const Projects: React.FC = () => {
       title: 'Tea Station',
       description: 'Product catalog website with responsive UI and mobile-first responsive design implementation. Clean and modern design focusing on user experience.',
       image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
       category: 'web',
       status: 'completed',
@@ -121,6 +127,7 @@ const Projects: React.FC = () => {
       title: 'Organization Task Tracker',
       description: 'Comprehensive task management system with Angular frontend and Laravel backend. Features task creation, assignment, tracking, notifications, role-based access, and team collaboration.',
       image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['Angular', 'Laravel', 'MySQL', 'PHP'],
       category: 'fullstack',
       status: 'completed',
@@ -142,6 +149,7 @@ const Projects: React.FC = () => {
       title: 'Task Management App (MEAN Stack)',
       description: 'Built using the MEAN Stack (MongoDB, Express.js, Angular, Node.js) for seamless task tracking with advanced user management and analytics.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'todolist_fgfspj',
       tech: ['MongoDB', 'Express.js', 'Angular', 'Node.js'],
       category: 'fullstack',
       status: 'completed',
@@ -162,6 +170,7 @@ const Projects: React.FC = () => {
       title: 'Attendance Management System',
       description: 'Developed using Frontend (HTML, CSS) and Backend (MongoDB, Express.js, Node.js) for efficient attendance tracking with role-based authentication.',
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['HTML', 'CSS', 'MongoDB', 'Express.js', 'Node.js'],
       category: 'fullstack',
       status: 'completed',
@@ -182,6 +191,7 @@ const Projects: React.FC = () => {
       title: 'Cargo Booking System',
       description: 'Developed using Laravel, this system streamlines the process of managing and scheduling cargo shipments efficiently with comprehensive logistics coordination.',
       image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['Laravel', 'PHP', 'MySQL'],
       category: 'fullstack',
       status: 'completed',
@@ -203,6 +213,7 @@ const Projects: React.FC = () => {
       title: 'Veterinary Management System',
       description: 'This project explores fundamental concepts of Object-Oriented Programming (OOP) in Java. Implements core Java features to enhance understanding and practical application.',
       image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['Java', 'OOP', 'GUI', 'File Handling'],
       category: 'desktop',
       status: 'completed',
@@ -224,6 +235,7 @@ const Projects: React.FC = () => {
       title: 'Contract Management System',
       description: 'A desktop application built with C# in Visual Studio for managing contracts efficiently. The system enables CRUD operations with a MySQL database.',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['C#', 'Visual Studio', 'MySQL', 'WinForms'],
       category: 'desktop',
       status: 'completed',
@@ -245,6 +257,7 @@ const Projects: React.FC = () => {
       title: 'Mobile Applications (React Native)',
       description: 'Developed multiple mobile applications using React Native, providing cross-platform compatibility for both Android and iOS with high performance and responsive UI.',
       image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
       tech: ['React Native', 'JavaScript', 'Cross-platform'],
       category: 'mobile',
       status: 'completed',
@@ -355,17 +368,32 @@ const Projects: React.FC = () => {
                 whileHover={{ y: -8, boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)" }}
                 layout
               >
-              {/* Project Image */}
-              <div className="relative h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                <div className="text-6xl text-gray-400">
-                  <FiCode />
+              {/* Project Image/Video */}
+              {project.videoPublicId ? (
+                <div className="relative">
+                  <CloudinaryVideoPlayer
+                    publicId={project.videoPublicId}
+                    thumbnail={project.image}
+                    title={project.title}
+                  />
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
+                      {project.status === 'ongoing' ? 'In Progress' : 'Completed'}
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute top-4 right-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-                    {project.status === 'ongoing' ? 'In Progress' : 'Completed'}
-                  </span>
+              ) : (
+                <div className="relative h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                  <div className="text-6xl text-gray-400">
+                    <FiCode />
+                  </div>
+                  <div className="absolute top-4 right-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
+                      {project.status === 'ongoing' ? 'In Progress' : 'Completed'}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="p-6">
                 {/* Project Header */}
