@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sparkles, UserRound, Zap, Rocket, Send } from 'lucide-react'
+import { Menu, X, Sparkles, UserRound, Zap, Rocket, Send, Briefcase } from 'lucide-react'
 import { slideInDown, staggerContainer, staggerItem, hoverScale } from '@/lib/animations'
 
 const Navbar: React.FC = () => {
@@ -26,6 +26,7 @@ const Navbar: React.FC = () => {
     { name: 'About', href: '/about', icon: UserRound },
     { name: 'Experience', href: '/experience', icon: Zap },
     { name: 'Projects', href: '/projects', icon: Rocket },
+    { name: 'Freelance', href: '/freelance', icon: Briefcase },
     { name: 'Contact', href: '/contact', icon: Send },
   ]
 
