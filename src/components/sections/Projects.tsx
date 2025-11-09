@@ -38,8 +38,8 @@ const Projects: React.FC = () => {
       id: 2,
       title: 'TeraBit IT Company Website',
       description: 'Developed and maintained the official website of TeraBit IT Company using modern React practices. Professional corporate website with responsive design and optimized performance.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&auto=format',
-      videoPublicId: null, // Add your Cloudinary video public ID here
+      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'Recording_2025-09-06_145350_z0a0rh', // Add your Cloudinary video public ID here
       tech: ['React.js', 'Modern Development Practices', 'Performance Optimization'],
       category: 'web',
       status: 'completed',
@@ -61,7 +61,7 @@ const Projects: React.FC = () => {
       title: 'Augmented Reality Admin Panel',
       description: 'Built the Admin Panel for an AR-based web application focusing on dynamic UI components and seamless user management features with AR integration support.',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&auto=format',
-      videoPublicId: null,
+      videoPublicId: 'Recording_2025-09-13_122233_cypx08',
       tech: ['React.js', 'Dynamic UI Components', 'User Management'],
       category: 'admin',
       status: 'completed',
@@ -79,11 +79,169 @@ const Projects: React.FC = () => {
       }
     },
     {
+      id: 13,
+      title: 'My Sunlight — Landing Page',
+      description: 'Responsive landing page built with React.js and Firebase for form handling and hosting. Focused on marketing, email capture, and performance-optimized UX.',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'sunshine_updated_d8go2d',
+      tech: ['React.js', 'Firebase', 'Tailwind CSS', 'Responsive Design'],
+      category: 'web',
+      status: 'completed',
+      period: '2025',
+      features: [
+      'Email capture with Firebase (Firestore + Functions)',
+      'Fast, SEO-friendly landing content',
+      'Responsive design across devices',
+      'Optimized assets and performance'
+      ],
+      links: {
+      live: null,
+      github: null,
+      demo: null
+      }
+    },
+    {
+      id: 14,
+      title: 'My Sunlight — Admin Panel',
+      description: 'Admin panel for the My Sunlight landing site. Built with React.js and Firebase (Auth, Firestore) to manage leads, content, and site settings.',
+      image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'mysunlight_j58ihg',
+      tech: ['React.js', 'Firebase Auth', 'Firestore', 'Tailwind CSS'],
+      category: 'admin',
+      status: 'completed',
+      period: '2025',
+      features: [
+      'Lead management dashboard connected to Firestore',
+      'Role-based access using Firebase Auth',
+      'Content management for landing page sections',
+      'Real-time updates and basic analytics'
+      ],
+      links: {
+      live: null,
+      github: null,
+      demo: null
+      }
+    },
+    {
+      id: 15,
+      title: 'Global Connect — Admin Panel',
+      description: 'Admin dashboard for Global Connect built with React.js, Tailwind CSS, Redux and Context API. Provides user & role management, analytics, real-time notifications and integrations for cross-region teams.',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'globalconnect_fvtcf2',
+      tech: ['React.js', 'Tailwind CSS', 'Redux', 'Context API'],
+      category: 'admin',
+      status: 'completed',
+      period: '2024',
+      features: [
+        'User & role management with granular permissions',
+        'Real-time notifications and activity feed',
+        'Analytics dashboard with charts and filters',
+        'Integrations with external APIs and webhooks'
+      ],
+      links: {
+        live: null,
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 16,
+      title: 'Xplra App — Admin Panel',
+      description: 'Admin panel for Xplra App created using Next.js (App Router), Tailwind CSS, Redux and Context API. Focused on fast server-rendered admin pages, content management and operational workflows.',
+      image: 'https://images.unsplash.com/photo-1526378721384-2d6d7f4f1f20?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'xplra_ixkyii',
+      tech: ['Next.js', 'Tailwind CSS', 'Redux', 'Context API', 'App Router'],
+      category: 'admin',
+      status: 'ongoing',
+      period: '2025 – Present',
+      features: [
+        'App Router-based structure with server and client components',
+        'SSR/ISR for performant admin pages',
+        'Role-based access control and audit logs',
+        'Content, user and settings management workflows'
+      ],
+      links: {
+        live: null,
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 17,
+      title: 'Wix Greeting Cards Store',
+      description: 'A Wix-built online store for selling greeting cards (birthday, friendship, anniversary, and more). Implemented product collections, variant options, a simple checkout flow, and basic SEO and performance optimizations.',
+      image: 'https://images.unsplash.com/photo-1505575967455-7e2d9d3d1f3b?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'sayitincard_zwyxtw',
+      tech: ['Wix', 'Wix Stores', 'Responsive Design', 'SEO'],
+      category: 'ecommerce',
+      status: 'completed',
+      period: '2025',
+      features: [
+        'Product collections for different card categories',
+        'Variant options (sizes, finishes)',
+        'Integrated Wix checkout and payment providers',
+        'Mobile-first responsive storefront and SEO optimizations'
+      ],
+      links: {
+        live: null,
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 18,
+      title: 'Task Manager App (MERN)',
+      description: 'Full-featured task manager built with the MERN stack (MongoDB, Express, React, Node) featuring user authentication, role-based access, real-time updates and a Kanban-style board.',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'WhatsApp_Video_2025-10-16_at_17.19.05_6dc31f06_xcdv1e',
+      tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Socket.IO', 'Redux', 'Tailwind CSS'],
+      category: 'fullstack',
+      status: 'completed',
+      period: '2024',
+      features: [
+        'JWT authentication with refresh tokens',
+        'Project & task CRUD with role-based permissions',
+        'Real-time task updates and notifications via Socket.IO',
+        'Drag-and-drop Kanban board with persistent state',
+        'Search, filtering, and activity audit log',
+        'REST API with input validation and error handling'
+      ],
+      links: {
+        live: null,
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 19,
+      title: 'Monetize 360 Global',
+      description: 'Client website focused on monetization and ad revenue optimization. Built with React.js and Framer Motion for smooth UI animations, integrated EmailJS for contact/lead forms, fully SEO-optimized and deployed to Hostinger.',
+      image: 'https://images.unsplash.com/photo-1508830524289-0adcbe822b40?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: 'monetize_360_eckdxy',
+      tech: ['React.js', 'Framer Motion', 'EmailJS', 'SEO', 'Hostinger', 'Google Ads'],
+      category: 'web',
+      status: 'completed',
+      period: '2025',
+      features: [
+        'Framer Motion powered animations and transitions',
+        'EmailJS integration for contact and lead capture forms',
+        'Full on-page SEO, sitemap and Google indexing configuration',
+        'Hosted on Hostinger with cPanel deployment',
+        'Google Ads integration for monetization and ad placement',
+        'Performance and accessibility optimizations for better ranking'
+      ],
+      links: {
+        live: 'https://monetize360.global/',
+        github: null,
+        demo: null
+      }
+    },
+    {
       id: 4,
       title: 'E-Commerce Store',
       description: 'Full-featured e-commerce store with shopping cart, admin dashboard, user authentication, product reviews, and order tracking functionality.',
       image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=300&fit=crop&auto=format',
-      videoPublicId: null,
+      videoPublicId: 'ecommerce_svds7y',
       tech: ['React.js', 'Redux', 'Tailwind CSS', 'Formik', 'YUP'],
       category: 'ecommerce',
       status: 'completed',
@@ -105,7 +263,7 @@ const Projects: React.FC = () => {
       title: 'Tea Station',
       description: 'Product catalog website with responsive UI and mobile-first responsive design implementation. Clean and modern design focusing on user experience.',
       image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=300&fit=crop&auto=format',
-      videoPublicId: null,
+      videoPublicId: 'tea_station_mzvhxi',
       tech: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
       category: 'web',
       status: 'completed',
@@ -127,7 +285,7 @@ const Projects: React.FC = () => {
       title: 'Organization Task Tracker',
       description: 'Comprehensive task management system with Angular frontend and Laravel backend. Features task creation, assignment, tracking, notifications, role-based access, and team collaboration.',
       image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=300&fit=crop&auto=format',
-      videoPublicId: null,
+      videoPublicId: 'Project_Short_Demo_Organization_Task_Tracker_gmgjdr',
       tech: ['Angular', 'Laravel', 'MySQL', 'PHP'],
       category: 'fullstack',
       status: 'completed',
@@ -148,7 +306,7 @@ const Projects: React.FC = () => {
       id: 7,
       title: 'Task Management App (MEAN Stack)',
       description: 'Built using the MEAN Stack (MongoDB, Express.js, Angular, Node.js) for seamless task tracking with advanced user management and analytics.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop&auto=format',
+      image: 'https://www.proofhub.com/articles/wp-content/uploads/2024/08/Task-table-view.jpg.webp',
       videoPublicId: 'todolist_fgfspj',
       tech: ['MongoDB', 'Express.js', 'Angular', 'Node.js'],
       category: 'fullstack',
