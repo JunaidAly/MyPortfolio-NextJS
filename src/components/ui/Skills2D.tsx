@@ -12,6 +12,7 @@ const Skills2D: React.FC = () => {
     { text: "Next.js", color: "#000000" },
     { text: "JavaScript", color: "#f7df1e" },
     { text: "Python", color: "#3776ab" },
+    { text: "WordPress", color: "#3243bb" },
   ]
 
   const hobbies = [

@@ -109,6 +109,7 @@ const Skills3D: React.FC = () => {
     { text: "Next.js", position: [0, -2, -1] as [number, number, number], color: "#000000" },
     { text: "JavaScript", position: [2, 0, -1] as [number, number, number], color: "#f7df1e" },
     { text: "Python", position: [-2, 0, -1] as [number, number, number], color: "#3776ab" },
+    { text: "WordPress", position: [-2.5, 1.5, 0] as [number, number, number], color: "#0073aa" },
   ]
 
   const hobbies = [

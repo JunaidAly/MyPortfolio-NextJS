@@ -79,6 +79,124 @@ const Projects: React.FC = () => {
       }
     },
     {
+      id: 20,
+      title: 'Vidlo – Video Platform Website',
+      description: 'Developed a full video platform website using WordPress and a custom theme. Implemented responsive UI, custom page layouts, and plugin integrations with optimized site speed, SEO metadata, and mobile performance.',
+      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
+      tech: ['WordPress', 'Custom Theme', 'SEO', 'Responsive Design', 'Plugin Integration'],
+      category: 'web',
+      status: 'completed',
+      period: '2025',
+      features: [
+        'Full video platform built with WordPress and custom theme',
+        'Responsive UI with custom page layouts',
+        'Plugin integrations for video delivery',
+        'Optimized site speed, SEO metadata, and mobile performance'
+      ],
+      links: {
+        live: 'https://vidlo.video/',
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 21,
+      title: 'Pro Content Radar – Content Marketing Platform',
+      description: 'Built a content marketing and radar platform using WordPress CMS. Customized Elementor layouts with advanced styling and responsiveness, and integrated lead capture forms, analytics, and SEO plugins.',
+      image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
+      tech: ['WordPress', 'Elementor', 'SEO Plugins', 'Lead Capture', 'Analytics'],
+      category: 'web',
+      status: 'completed',
+      period: '2025',
+      features: [
+        'Content marketing platform built on WordPress CMS',
+        'Customized Elementor layouts with advanced styling',
+        'Lead capture forms and analytics integrations',
+        'SEO plugin configuration and on-page optimization'
+      ],
+      links: {
+        live: 'https://procontentradar.com/',
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 22,
+      title: 'Gifted Curators DC – Art Curation Website',
+      description: 'Designed and developed an art curation website using WordPress. Built custom pages with gallery layouts, WooCommerce, and event sections while ensuring cross-browser compatibility, accessibility, and performance tuning.',
+      image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
+      tech: ['WordPress', 'WooCommerce', 'Gallery Layouts', 'Custom Pages', 'Accessibility'],
+      category: 'web',
+      status: 'completed',
+      period: '2025',
+      features: [
+        'Art curation site with custom gallery layouts',
+        'WooCommerce integration for art sales',
+        'Event sections and custom page designs',
+        'Cross-browser compatibility, accessibility, and performance tuning'
+      ],
+      links: {
+        live: 'https://giftedcuratorsdc.com/',
+        github: null,
+        demo: null
+      }
+    },
+    {
+      id: 23,
+      title: 'Primus Booking – Multi-Platform SaaS Ecosystem',
+      description: 'Built a full booking SaaS ecosystem comprising three interconnected platforms: a Customer Portal, a Business Portal, and an Admin Panel. Implemented Supabase Auth (email, Google OAuth, recovery, verification), role-based access control via Next.js middleware, a booking and scheduling system, and a reward points module — all on a scalable Next.js App Router + TypeScript architecture.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
+      tech: ['Next.js', 'TypeScript', 'Supabase', 'App Router', 'Tailwind CSS', 'Role-based Access'],
+      category: 'fullstack',
+      status: 'ongoing',
+      period: '2025 – Present',
+      features: [
+        'Customer, Business, and Admin platforms in one ecosystem',
+        'Supabase Auth with email, Google OAuth, recovery & verification',
+        'Role-based access control using Next.js middleware',
+        'Booking system, scheduling, and reward points module',
+        'Scalable architecture with Next.js App Router + TypeScript'
+      ],
+      links: {
+        live: null,
+        github: null,
+        demo: null
+      },
+      extraLinks: [
+        { label: 'Customer Portal', url: 'https://primus-customer-website.vercel.app/' },
+        { label: 'Business Portal', url: 'https://primus-business-website.vercel.app/' },
+        { label: 'Admin Panel', url: 'https://primus-admin-dashboard.vercel.app/' },
+      ]
+    },
+    {
+      id: 24,
+      title: 'SkillBridge – Skill Exchange Platform',
+      description: 'A MERN stack application connecting students and teachers for skill exchange. Features AI-powered teacher recommendations using content-based filtering, real-time Socket.IO chat, integrated meeting scheduling, a virtual credit system, and a Python/FastAPI microservice for ML recommendations.',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=300&fit=crop&auto=format',
+      videoPublicId: null,
+      tech: ['React 19', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Redux Toolkit', 'Python', 'FastAPI', 'scikit-learn', 'Tailwind CSS', 'JWT', 'Cloudinary'],
+      category: 'fullstack',
+      status: 'completed',
+      period: '2025',
+      features: [
+        'JWT + 2FA + Google OAuth authentication',
+        'Real-time chat with Socket.IO messaging',
+        'AI-powered teacher matching via Python/FastAPI + scikit-learn',
+        'Meeting scheduler for booking sessions with teachers',
+        'Virtual credit system and user skill portfolios with ratings',
+        'Email notifications and Cloudinary cloud storage'
+      ],
+      links: {
+        live: 'https://skill-bridge-mern.vercel.app/',
+        github: 'https://github.com/JunaidAly/SkillBridge_MERN',
+        demo: null
+      }
+    },
+    {
       id: 13,
       title: 'My Sunlight — Landing Page',
       description: 'Responsive landing page built with React.js and Firebase for form handling and hosting. Focused on marketing, email capture, and performance-optimized UX.',
@@ -95,7 +213,7 @@ const Projects: React.FC = () => {
       'Optimized assets and performance'
       ],
       links: {
-      live: null,
+      live: 'https://mysunlight.co/',
       github: null,
       demo: null
       }
@@ -608,7 +726,20 @@ const Projects: React.FC = () => {
                       Live Demo
                     </a>
                   )}
-                  
+
+                  {(project as any).extraLinks?.map((link: { label: string; url: string }) => (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 justify-center"
+                    >
+                      <FiExternalLink className="mr-2" size={14} />
+                      {link.label}
+                    </a>
+                  ))}
+
                   {project.links.github && (
                     <a
                       href={project.links.github}
@@ -633,7 +764,7 @@ const Projects: React.FC = () => {
                     </a>
                   )}
 
-                  {!project.links.live && !project.links.github && !project.links.demo && (
+                  {!project.links.live && !project.links.github && !project.links.demo && !(project as any).extraLinks?.length && (
                     <div className="flex items-center px-4 py-2 bg-gray-100 text-gray-500 rounded-lg text-sm font-medium">
                       <FiEye className="mr-2" size={14} />
                       Private Project
