@@ -62,66 +62,68 @@ const About: React.FC = () => {
   ]
 
   return (
-    <section ref={ref} id="about" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+    <section
+      ref={ref}
+      id="about"
+      className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
+    >
       {/* Background decorations */}
-      <motion.div 
+      <motion.div
         className="absolute top-20 right-20 w-32 h-32 bg-blue-100 rounded-full opacity-30"
-        animate={{ 
+        animate={{
           y: [0, -20, 0],
-          rotate: [0, 180, 360] 
+          rotate: [0, 180, 360],
         }}
-        transition={{ 
+        transition={{
           duration: 10,
           repeat: Infinity,
-          ease: "easeInOut" 
+          ease: "easeInOut",
         }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-20 left-20 w-24 h-24 bg-purple-100 rounded-lg opacity-30"
-        animate={{ 
+        animate={{
           y: [0, 20, 0],
-          rotate: [0, -180, -360] 
+          rotate: [0, -180, -360],
         }}
-        transition={{ 
+        transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut" 
+          ease: "easeInOut",
         }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={staggerContainer}
           initial="initial"
           animate={isInView ? "animate" : "initial"}
         >
-          <motion.h2 
+          <motion.h2
             variants={staggerItem}
             className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
           >
             About Me
           </motion.h2>
-          <motion.div 
+          <motion.div
             variants={staggerItem}
             className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"
           />
-          <motion.p 
+          <motion.p
             variants={staggerItem}
             className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
-            I'm Junaid Ali, a BS Computer Science graduate from COMSATS University Islamabad, 
-            eager to kickstart my career in web development. My core expertise lies in MERN stack 
-            (MongoDB, Express.js, React.js, Node.js), and I am passionate about building dynamic 
-            and scalable web applications.
+            Full Stack Web Developer with expertise in React.js, Next.js,
+            WordPress, Laravel, Node.js, and cloud platforms (AWS, Azure, GCP).
+            Experienced in building SaaS platforms, booking systems, AR-based
+            admin applications, e-commerce solutions, CMS websites, and scalable
+            UI/UX-driven web apps.
           </motion.p>
-          
+
           {/* Download Resume Button */}
-          <motion.div 
-            variants={staggerItem}
-            className="mt-8"
-          >
+          <motion.div variants={staggerItem} className="mt-8">
             <motion.button
               onClick={handleDownloadCV}
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-xl shadow-lg space-x-2 relative overflow-hidden"
@@ -147,14 +149,14 @@ const About: React.FC = () => {
         </motion.div>
 
         {/* Profile Image Section */}
-        <motion.div 
+        <motion.div
           className="flex justify-center mb-12"
           variants={slideInUp}
           initial="initial"
           animate={isInView ? "animate" : "initial"}
         >
           <div className="relative">
-            <motion.div 
+            <motion.div
               className="w-48 h-48 rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-blue-500 to-purple-600 p-1"
               whileHover={{ scale: 1.05, rotate: 5 }}
               transition={{ duration: 0.3 }}
@@ -171,51 +173,48 @@ const About: React.FC = () => {
               </div>
             </motion.div>
             {/* Animated decorative elements */}
-            <motion.div 
+            <motion.div
               className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full"
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
-                opacity: [1, 0.7, 1]
+                opacity: [1, 0.7, 1],
               }}
-              transition={{ 
+              transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut" 
+                ease: "easeInOut",
               }}
             />
-            <motion.div 
+            <motion.div
               className="absolute -bottom-2 -left-2 w-4 h-4 bg-purple-500 rounded-full"
-              animate={{ 
+              animate={{
                 scale: [1, 1.3, 1],
-                opacity: [1, 0.5, 1]
+                opacity: [1, 0.5, 1],
               }}
-              transition={{ 
+              transition={{
                 duration: 2.5,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1 
+                delay: 1,
               }}
             />
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12"
           variants={staggerContainer}
           initial="initial"
           animate={isInView ? "animate" : "initial"}
         >
           {/* Left Column */}
-          <motion.div 
-            className="space-y-8"
-            variants={slideInLeft}
-          >
+          <motion.div className="space-y-8" variants={slideInLeft}>
             {/* Personal Information */}
-            <motion.div 
+            <motion.div
               className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100"
               {...hoverFloat}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-semibold text-gray-900 mb-6 flex items-center"
                 whileHover={{ scale: 1.02 }}
               >
@@ -227,23 +226,23 @@ const About: React.FC = () => {
                 </motion.div>
                 Personal Information
               </motion.h3>
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 variants={staggerContainer}
                 initial="initial"
                 animate={isInView ? "animate" : "initial"}
               >
                 {personalInfo.map((info, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     className="flex flex-col p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200"
                     variants={{
                       initial: { opacity: 0, y: 20 },
-                      animate: { 
-                        opacity: 1, 
+                      animate: {
+                        opacity: 1,
                         y: 0,
-                        transition: { delay: index * 0.1, duration: 0.3 }
-                      }
+                        transition: { delay: index * 0.1, duration: 0.3 },
+                      },
                     }}
                   >
                     <span className="text-sm font-medium text-gray-500 mb-1">
@@ -258,11 +257,11 @@ const About: React.FC = () => {
             </motion.div>
 
             {/* Core Strengths */}
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 shadow-lg border border-blue-100"
               {...hoverFloat}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-semibold text-gray-900 mb-6 flex items-center"
                 whileHover={{ scale: 1.02 }}
               >
@@ -274,41 +273,43 @@ const About: React.FC = () => {
                 </motion.div>
                 Core Strengths
               </motion.h3>
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 gap-3"
                 variants={staggerContainer}
                 initial="initial"
                 animate={isInView ? "animate" : "initial"}
               >
                 {coreStrengths.map((strength, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     className="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-blue-200 cursor-pointer"
                     variants={{
                       initial: { opacity: 0, scale: 0.8 },
-                      animate: { 
-                        opacity: 1, 
+                      animate: {
+                        opacity: 1,
                         scale: 1,
-                        transition: { delay: index * 0.1, duration: 0.3 }
-                      }
+                        transition: { delay: index * 0.1, duration: 0.3 },
+                      },
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
-                      boxShadow: "0 10px 30px rgba(59, 130, 246, 0.2)"
+                      boxShadow: "0 10px 30px rgba(59, 130, 246, 0.2)",
                     }}
                   >
-                    <span className="text-gray-900 font-medium">{strength}</span>
+                    <span className="text-gray-900 font-medium">
+                      {strength}
+                    </span>
                   </motion.div>
                 ))}
               </motion.div>
             </motion.div>
 
             {/* Interests & Hobbies */}
-            <motion.div 
+            <motion.div
               className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100"
               {...hoverFloat}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-semibold text-gray-900 mb-6 flex items-center"
                 whileHover={{ scale: 1.02 }}
               >
@@ -320,7 +321,7 @@ const About: React.FC = () => {
                 </motion.div>
                 Interests & Hobbies
               </motion.h3>
-              <motion.div 
+              <motion.div
                 className="flex flex-wrap gap-3"
                 variants={staggerContainer}
                 initial="initial"
@@ -332,16 +333,16 @@ const About: React.FC = () => {
                     className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium cursor-pointer"
                     variants={{
                       initial: { opacity: 0, scale: 0 },
-                      animate: { 
-                        opacity: 1, 
+                      animate: {
+                        opacity: 1,
                         scale: 1,
-                        transition: { delay: index * 0.1, duration: 0.3 }
-                      }
+                        transition: { delay: index * 0.1, duration: 0.3 },
+                      },
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.1,
                       backgroundColor: "rgba(59, 130, 246, 0.8)",
-                      color: "white"
+                      color: "white",
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -353,9 +354,7 @@ const About: React.FC = () => {
           </motion.div>
 
           {/* Right Column - Career Highlights */}
-          <motion.div
-            variants={slideInRight}
-          >
+          <motion.div variants={slideInRight}>
             <motion.div
               className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-lg"
               {...hoverFloat}
@@ -363,7 +362,8 @@ const About: React.FC = () => {
               <motion.div
                 className="bg-gradient-to-r from-blue-600 to-purple-600 p-6"
                 whileHover={{
-                  backgroundImage: "linear-gradient(to right, #8b5cf6, #ec4899)"
+                  backgroundImage:
+                    "linear-gradient(to right, #8b5cf6, #ec4899)",
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -391,19 +391,21 @@ const About: React.FC = () => {
                   <motion.div
                     key={index}
                     className={`relative pb-6 ${
-                      index !== achievements.length - 1 ? 'border-b border-gray-200' : ''
+                      index !== achievements.length - 1
+                        ? "border-b border-gray-200"
+                        : ""
                     }`}
                     variants={{
                       initial: { opacity: 0, x: 50 },
                       animate: {
                         opacity: 1,
                         x: 0,
-                        transition: { delay: index * 0.2, duration: 0.5 }
-                      }
+                        transition: { delay: index * 0.2, duration: 0.5 },
+                      },
                     }}
                     whileHover={{
                       x: 10,
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2 },
                     }}
                   >
                     {/* Animated Timeline icon */}
@@ -415,12 +417,14 @@ const About: React.FC = () => {
                       whileHover={{
                         scale: 1.2,
                         boxShadow: "0 0 20px rgba(59, 130, 246, 0.6)",
-                        rotate: 360
+                        rotate: 360,
                       }}
                     >
-                      {achievement.icon === 'FiCode' && <FiCode size={16} />}
-                      {achievement.icon === 'FiLayers' && <FiLayers size={16} />}
-                      {achievement.icon === 'FiBox' && <FiBox size={16} />}
+                      {achievement.icon === "FiCode" && <FiCode size={16} />}
+                      {achievement.icon === "FiLayers" && (
+                        <FiLayers size={16} />
+                      )}
+                      {achievement.icon === "FiBox" && <FiBox size={16} />}
                     </motion.div>
 
                     <motion.div
@@ -460,71 +464,70 @@ const About: React.FC = () => {
         </motion.div>
 
         {/* Certifications Section */}
-        <motion.div 
+        <motion.div
           className="mt-16"
           variants={slideInUp}
           initial="initial"
           animate={isInView ? "animate" : "initial"}
         >
-          <motion.h3 
+          <motion.h3
             className="text-2xl font-bold text-gray-900 mb-8 text-center"
             whileHover={{ scale: 1.05 }}
           >
             Certifications
           </motion.h3>
-          <motion.div 
+          <motion.div
             className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8 shadow-lg border border-green-100"
             {...hoverFloat}
-            whileHover={{ 
-              boxShadow: "0 20px 40px rgba(16, 185, 129, 0.2)" 
+            whileHover={{
+              boxShadow: "0 20px 40px rgba(16, 185, 129, 0.2)",
             }}
           >
             <div className="flex items-start space-x-4">
-              <motion.div 
+              <motion.div
                 className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.1,
                   rotate: 360,
-                  backgroundColor: "#10b981"
+                  backgroundColor: "#10b981",
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.div
-                  whileHover={{ color: "white" }}
-                >
+                <motion.div whileHover={{ color: "white" }}>
                   <FiAward className="text-green-600" size={24} />
                 </motion.div>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex-1"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <motion.h4 
+                <motion.h4
                   className="font-semibold text-lg text-gray-900 cursor-pointer"
                   whileHover={{ color: "#10b981", scale: 1.02 }}
                 >
                   Freelancing Certification
                 </motion.h4>
-                <motion.p 
+                <motion.p
                   className="text-green-600 font-medium"
                   whileHover={{ scale: 1.02 }}
                 >
                   DigiSkills Training Program
                 </motion.p>
-                <motion.p 
+                <motion.p
                   className="text-gray-600 text-sm mt-1"
                   whileHover={{ fontWeight: "600" }}
                 >
                   June 2021 – September 2021 | Certificate ID: KCWNYXBPQ
                 </motion.p>
-                <motion.p 
+                <motion.p
                   className="text-gray-700 mt-2 leading-relaxed"
                   whileHover={{ color: "#374151" }}
                 >
-                  Completed comprehensive freelancing course under Batch-10, 
-                  covering essential skills for independent work and client management.
+                  Completed comprehensive freelancing course under Batch-10,
+                  covering essential skills for independent work and client
+                  management.
                 </motion.p>
               </motion.div>
             </div>
@@ -532,7 +535,7 @@ const About: React.FC = () => {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 export default About
