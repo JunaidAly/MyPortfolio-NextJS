@@ -1,237 +1,76 @@
-"use client"
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sparkles, UserRound, Zap, Rocket, Send, Briefcase } from 'lucide-react'
-import { slideInDown, staggerContainer, staggerItem, hoverScale } from '@/lib/animations'
+"use client";
 
-const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const navItems = [
+  { label: "Work", href: "/#work" },
+  { label: "Experience", href: "/#experience" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
+];
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20
-      setScrolled(isScrolled)
-    }
+    const onScroll = () => setScrolled(window.scrollY > 18);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const navItems = [
-    { name: 'Home', href: '/', icon: Sparkles },
-    { name: 'About', href: '/about', icon: UserRound },
-    { name: 'Experience', href: '/experience', icon: Zap },
-    { name: 'Projects', href: '/projects', icon: Rocket },
-    { name: 'Freelance', href: '/freelance', icon: Briefcase },
-    { name: 'Contact', href: '/contact', icon: Send },
-  ]
-
-  const handleNavClick = (href: string) => {
-    setIsOpen(false)
-  }
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <motion.nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <Link href="/" className="flex items-center space-x-2">
-              <motion.div 
-                className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg"
-                whileHover={{ 
-                  scale: 1.1,
-                  rotate: 360,
-                  boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)"
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                JA
-              </motion.div>
-              <motion.span 
-                className="font-bold text-xl text-gray-800"
-                whileHover={{ scale: 1.05 }}
-              >
-                Junaid Ali
-              </motion.span>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-white/10 bg-[#0b0d0c]/85 backdrop-blur-xl" : "bg-transparent"}`}>
+      <div className="site-shell flex h-[74px] items-center justify-between">
+        <Link href="/" className="group flex items-center gap-3" aria-label="Junaid Ali — Home">
+          <span className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-white/5 font-display text-sm font-semibold transition-colors group-hover:border-[#c9ff63] group-hover:text-[#c9ff63]">JA</span>
+          <span className="font-display text-[15px] font-medium tracking-tight">Junaid Ali</span>
+        </Link>
+
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <Link key={item.label} href={item.href} className="rounded-full px-4 py-2 text-[13px] text-[#b9bcb6] transition-colors hover:bg-white/5 hover:text-white">
+              {item.label}
             </Link>
-          </motion.div>
+          ))}
+        </nav>
 
-          {/* Desktop Navigation */}
-          <motion.div 
-            className="hidden md:block"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            <div className="flex space-x-2">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  variants={staggerItem}
-                  custom={index}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`relative px-4 py-2 rounded-lg font-medium flex items-center space-x-2 transition-all duration-300 ${
-                      pathname === item.href
-                        ? 'text-blue-600'
-                        : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <item.icon size={16} />
-                    </motion.div>
-                    <span>{item.name}</span>
-                    
-                    {/* Active indicator */}
-                    {pathname === item.href && (
-                      <motion.div
-                        className="absolute inset-0 bg-blue-50 rounded-lg -z-10"
-                        layoutId="activeTab"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                    )}
-                    
-                    {/* Hover effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gray-100 rounded-lg -z-20"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileHover={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <a href="/My Resume.pdf" download="Junaid_Ali_Resume.pdf" className="button-secondary hidden min-h-[42px] px-4 text-xs md:inline-flex">
+          Resume <ArrowUpRight size={15} />
+        </a>
 
-          {/* Mobile menu button */}
-          <motion.div 
-            className="md:hidden"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <motion.button
-              onClick={() => setIsOpen(!isOpen)}
-              className="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-gray-600 hover:text-blue-600 shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <AnimatePresence mode="wait">
-                {isOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -180, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 180, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X size={20} />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 180, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -180, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu size={20} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
-          </motion.div>
-        </div>
+        <button type="button" onClick={() => setOpen((value) => !value)} className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+          {open ? <X size={19} /> : <Menu size={19} />}
+        </button>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg"
+        {open && (
+          <motion.nav
+            className="border-t border-white/10 bg-[#0b0d0c]/95 px-5 py-6 backdrop-blur-xl md:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <motion.div 
-              className="px-2 pt-2 pb-3 space-y-2"
-              variants={staggerContainer}
-              initial="initial"
-              animate="animate"
-            >
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  variants={{
-                    initial: { opacity: 0, x: -20 },
-                    animate: { 
-                      opacity: 1, 
-                      x: 0,
-                      transition: { delay: index * 0.1, duration: 0.3 }
-                    }
-                  }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => handleNavClick(item.href)}
-                    className={` px-4 py-3 rounded-xl transition-all duration-200 flex items-center space-x-3 ${
-                      pathname === item.href
-                        ? 'text-blue-600 bg-blue-50 shadow-sm'
-                        : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                    }`}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <item.icon size={18} />
-                    </motion.div>
-                    <span className="font-medium">{item.name}</span>
-                    
-                    {pathname === item.href && (
-                      <motion.div
-                        className="ml-auto w-2 h-2 bg-blue-600 rounded-full"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                      />
-                    )}
-                  </Link>
-                </motion.div>
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <Link key={item.label} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 font-display text-2xl hover:bg-white/5">
+                  {item.label}
+                </Link>
               ))}
-            </motion.div>
-          </motion.div>
+              <a href="/My Resume.pdf" download="Junaid_Ali_Resume.pdf" className="button-primary mt-3">Download resume <ArrowUpRight size={17} /></a>
+            </div>
+          </motion.nav>
         )}
       </AnimatePresence>
-    </motion.nav>
-  )
+    </header>
+  );
 }
-
-export default Navbar

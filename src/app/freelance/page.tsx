@@ -1,14 +1,13 @@
 import Freelance from '@/components/sections/Freelance'
 
 export const metadata = {
-  title: 'Freelance Platforms | Junaid Ali - Available for Hire',
-  description: 'Hire Junaid Ali on top freelancing platforms including Fiverr, Upwork, Freelancer, and Guru. Expert in React, Next.js, MERN stack, and full-stack development.',
-  keywords: 'freelance developer, hire freelancer, React developer, Next.js expert, full-stack developer, Fiverr, Upwork, Freelancer, Guru',
+  title: 'Freelance Profiles',
+  description: 'Work with Junaid Ali through Upwork, Fiverr, Freelancer, or Guru.',
 }
 
 export default function FreelancePage() {
   return (
-    <div className="pt-16">
+    <div className="min-h-[70vh] pt-[74px]">
       <Freelance />
     </div>
   )
