@@ -158,7 +158,7 @@ button { cursor: pointer; }
 }
 
 .floating-panel.top { top: 4%; right: -2%; transform: translateZ(90px) rotateY(-8deg); animation: panel-drift 6s ease-in-out infinite alternate; }
-.floating-panel.bottom { left: 0; bottom: 4%; transform: translateZ(120px) rotateY(8deg); animation: panel-drift 7.5s ease-in-out -2s infinite alternate-reverse; }
+.floating-panel.bottom { left: -4%; top: 28%; bottom: auto; transform: translateZ(120px) rotateY(8deg); animation: panel-drift 7.5s ease-in-out -2s infinite alternate-reverse; }
 
 .orbital-ring {
   position: absolute;
@@ -237,6 +237,7 @@ button { cursor: pointer; }
 
 @media (max-width: 900px) {
   .hero-stage { min-height: 490px; width: min(100%, 540px); margin-inline: auto; }
+  .floating-panel.bottom { display: none; }
   .site-shell { width: min(100% - 28px, 1180px); }
 }
 
@@ -246,7 +247,6 @@ button { cursor: pointer; }
   .portrait-card { inset: 7% 5% 8% 7%; border-radius: 27px; }
   .floating-panel { width: 155px; padding: 12px; }
   .floating-panel.top { right: -1%; }
-  .floating-panel.bottom { left: -1%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

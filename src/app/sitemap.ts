@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
+import { allProjects } from '@/constants/portfolio'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://junaidaly.vercel.app'
 
-  return [
+  const pages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -29,4 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
   ]
+
+  const projectPages: MetadataRoute.Sitemap = allProjects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }))
+
+  return [...pages, ...projectPages]
 }
