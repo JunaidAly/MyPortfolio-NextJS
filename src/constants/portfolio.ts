@@ -163,6 +163,7 @@ export const projects = [
     slug: "skillbridge",
     index: "02",
     title: "SkillBridge",
+    ownerBadge: "MY OWN PRODUCT",
     category: "AI-powered skill exchange",
     period: "2025 — Present",
     description:

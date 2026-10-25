@@ -161,7 +161,14 @@ export default function Projects() {
                 <div className="flex flex-1 flex-col p-4 pb-5 pt-7 md:p-6 md:pb-7">
                   <div className="flex items-start justify-between gap-5">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[.15em] text-[#8c9089]">{project.index} · {project.category}</p>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-[10px] uppercase tracking-[.15em] text-[#8c9089]">{project.index} · {project.category}</p>
+                        {"ownerBadge" in project && project.ownerBadge && (
+                          <span className="rounded-full bg-[#c9ff63] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.12em] text-[#10130f] shadow-[0_0_20px_rgba(201,255,99,.18)]">
+                            {project.ownerBadge}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="mt-3 font-display text-4xl font-medium tracking-[-.045em]">{project.title}</h3>
                     </div>
                     {project.live ? (

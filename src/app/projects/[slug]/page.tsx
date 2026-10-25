@@ -34,6 +34,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
   const nextProject = allProjects[(projectIndex + 1) % allProjects.length];
   const status = "status" in project ? project.status : project.period.includes("Present") ? "Ongoing" : "Completed";
   const github = "github" in project ? project.github : null;
+  const ownerBadge = "ownerBadge" in project ? project.ownerBadge : null;
   const highlights = "highlights" in project
     ? project.highlights
     : [project.description, `Built with ${project.stack.join(", ")}.`];
@@ -49,7 +50,14 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
 
         <div className="mt-12 grid gap-10 border-b border-white/10 pb-14 lg:grid-cols-[1fr_320px] lg:items-end">
           <Reveal>
-            <span className="eyebrow">{project.category} · Case study</span>
+            <div className="flex flex-wrap items-center gap-4">
+              {ownerBadge && (
+                <span className="inline-flex rounded-full bg-[#c9ff63] px-3.5 py-2 text-[10px] font-bold uppercase tracking-[.15em] text-[#10130f] shadow-[0_0_24px_rgba(201,255,99,.18)]">
+                  {ownerBadge}
+                </span>
+              )}
+              <span className="eyebrow !mb-0">{project.category} · Case study</span>
+            </div>
             <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.5rem,8vw,7.5rem)] font-medium leading-[.86] tracking-[-.065em]">{project.title}</h1>
             <p className="mt-8 max-w-3xl text-base leading-8 text-[#adb2aa] md:text-lg">{project.description}</p>
           </Reveal>
