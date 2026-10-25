@@ -34,7 +34,11 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
   const nextProject = allProjects[(projectIndex + 1) % allProjects.length];
   const status = "status" in project ? project.status : project.period.includes("Present") ? "Ongoing" : "Completed";
   const github = "github" in project ? project.github : null;
-  const ownerBadge = "ownerBadge" in project ? project.ownerBadge : null;
+  const projectBadge = "ownerBadge" in project
+    ? project.ownerBadge
+    : "projectBadge" in project
+      ? project.projectBadge
+      : null;
   const highlights = "highlights" in project
     ? project.highlights
     : [project.description, `Built with ${project.stack.join(", ")}.`];
@@ -51,9 +55,9 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
         <div className="mt-12 grid gap-10 border-b border-white/10 pb-14 lg:grid-cols-[1fr_320px] lg:items-end">
           <Reveal>
             <div className="flex flex-wrap items-center gap-4">
-              {ownerBadge && (
+              {projectBadge && (
                 <span className="inline-flex rounded-full bg-[#c9ff63] px-3.5 py-2 text-[10px] font-bold uppercase tracking-[.15em] text-[#10130f] shadow-[0_0_24px_rgba(201,255,99,.18)]">
-                  {ownerBadge}
+                  {projectBadge}
                 </span>
               )}
               <span className="eyebrow !mb-0">{project.category} · Case study</span>

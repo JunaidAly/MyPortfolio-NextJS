@@ -19,9 +19,13 @@ import ScrollSection from "@/components/ui/ScrollSection";
 import { moreProjects, projects } from "@/constants/portfolio";
 
 const PROJECTS_PER_PAGE = 6;
-const orderedMoreProjects = [...moreProjects].sort(
-  (first, second) => Number(second.gallery.length > 0) - Number(first.gallery.length > 0),
-);
+const orderedMoreProjects = [...moreProjects].sort((first, second) => {
+  const featuredDifference =
+    Number("featured" in second && second.featured) - Number("featured" in first && first.featured);
+
+  if (featuredDifference !== 0) return featuredDifference;
+  return Number(second.gallery.length > 0) - Number(first.gallery.length > 0);
+});
 
 function ProductMockup({ accent, title, compact = false }: { accent: string; title: string; compact?: boolean }) {
   return (
@@ -163,9 +167,9 @@ export default function Projects() {
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
                         <p className="text-[10px] uppercase tracking-[.15em] text-[#8c9089]">{project.index} · {project.category}</p>
-                        {"ownerBadge" in project && project.ownerBadge && (
+                        {(("ownerBadge" in project && project.ownerBadge) || ("projectBadge" in project && project.projectBadge)) && (
                           <span className="rounded-full bg-[#c9ff63] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[.12em] text-[#10130f] shadow-[0_0_20px_rgba(201,255,99,.18)]">
-                            {project.ownerBadge}
+                            {"ownerBadge" in project ? project.ownerBadge : "projectBadge" in project ? project.projectBadge : null}
                           </span>
                         )}
                       </div>
