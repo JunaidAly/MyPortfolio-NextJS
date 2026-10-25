@@ -6,6 +6,22 @@ import Footer from "@/components/layout/Footer";
 import RouteTransition from "@/components/layout/RouteTransition";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 
+const themeScript = `
+  (function () {
+    try {
+      var savedTheme = localStorage.getItem("portfolio-theme");
+      var theme = savedTheme === "light" || savedTheme === "dark"
+        ? savedTheme
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+    } catch (error) {
+      document.documentElement.dataset.theme = "dark";
+      document.documentElement.style.colorScheme = "dark";
+    }
+  })();
+`;
+
 const display = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-display",
@@ -58,7 +74,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <ScrollProgress />
         <Navbar />

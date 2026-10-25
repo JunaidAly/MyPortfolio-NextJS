@@ -10,7 +10,7 @@ export default function CaseStudyGallery({ images, title }: { images: readonly s
 
   if (!images.length) {
     return (
-      <div className="grid aspect-[16/9] place-items-center rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(201,255,99,.16),transparent_36%),linear-gradient(135deg,#1a201b,#0d100e)] p-8 text-center">
+      <div className="always-dark grid aspect-[16/9] place-items-center rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_50%_35%,rgba(201,255,99,.16),transparent_36%),linear-gradient(135deg,#1a201b,#0d100e)] p-8 text-center">
         <div>
           <span className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-white/10 bg-white/[.04] text-[#c9ff63]"><Images size={25} /></span>
           <p className="mt-5 font-display text-2xl text-white">Private project preview</p>
@@ -25,7 +25,7 @@ export default function CaseStudyGallery({ images, title }: { images: readonly s
 
   return (
     <div>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-white/10 bg-[#080b09] shadow-2xl shadow-black/30 md:rounded-[34px]">
+      <div className="always-dark relative aspect-[16/10] overflow-hidden rounded-[26px] border border-white/10 bg-[#080b09] shadow-2xl shadow-black/30 md:rounded-[34px]">
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={images[activeImage]}

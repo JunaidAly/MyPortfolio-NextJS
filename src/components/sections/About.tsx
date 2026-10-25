@@ -10,7 +10,7 @@ export default function About() {
   return (
     <ScrollSection
       id="about"
-      className="section-pad bg-[#f3efe5] text-[#0b0d0c]"
+      className="section-pad section-compact-top bg-[#f3efe5] text-[#0b0d0c]"
       direction="scale"
     >
       <div className="site-shell">
@@ -38,7 +38,7 @@ export default function About() {
           ))}
         </div>
 
-        <Reveal className="mt-16 grid overflow-hidden rounded-[28px] bg-[#151816] text-[#f3efe5] md:grid-cols-[.85fr_1.15fr]" delay={0.12}>
+        <Reveal className="always-dark mt-16 grid overflow-hidden rounded-[28px] bg-[#151816] text-[#f3efe5] md:grid-cols-[.85fr_1.15fr]" delay={0.12}>
           <div className="border-b border-white/10 p-8 md:border-b-0 md:border-r md:p-10">
             <p className="text-xs uppercase tracking-[.16em] text-[#c9ff63]">Working style</p>
             <p className="mt-6 font-display text-3xl leading-tight tracking-[-.04em]">Calm execution. Clear communication. No black boxes.</p>

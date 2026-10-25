@@ -64,7 +64,7 @@ function ProjectMediaCarousel({
   const showNext = () => setActiveImage((current) => (current + 1) % images.length);
 
   return (
-    <div className={`group/media relative overflow-hidden rounded-[22px] bg-[#080b09] ${compact ? "aspect-[16/10]" : "aspect-[16/10]"}`}>
+    <div className={`always-dark group/media relative overflow-hidden rounded-[22px] bg-[#080b09] ${compact ? "aspect-[16/10]" : "aspect-[16/10]"}`}>
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={images[activeImage]}
@@ -143,7 +143,7 @@ export default function Projects() {
   };
 
   return (
-    <ScrollSection id="work" className="section-pad bg-[#121513]" direction="up">
+    <ScrollSection id="work" className="theme-surface section-pad" direction="up">
       <div className="site-shell">
         <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -206,7 +206,7 @@ export default function Projects() {
                   exit={{ opacity: 0, y: 18, scale: 0.97 }}
                   transition={{ duration: 0.48, delay: (index % PROJECTS_PER_PAGE) * 0.045, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -6 }}
-                  className="group flex min-h-[440px] flex-col overflow-hidden rounded-[26px] border border-white/10 bg-white/[.035] p-3 transition-colors hover:border-[#c9ff63]/35 hover:bg-white/[.055]"
+                  className="theme-card group flex min-h-[440px] flex-col overflow-hidden rounded-[26px] border p-3 transition-colors hover:border-[#c9ff63]/35"
                 >
                   <ProjectMediaCarousel images={project.gallery} title={project.title} compact />
 

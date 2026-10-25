@@ -35,7 +35,7 @@ export default function Contact() {
   return (
     <ScrollSection
       id="contact"
-      className="section-pad relative overflow-hidden bg-[#0b0d0c]"
+      className="theme-page section-pad relative overflow-hidden"
       direction="up"
     >
       <div className="absolute -bottom-72 -left-48 h-[600px] w-[600px] rounded-full bg-[#c9ff63]/[.08] blur-3xl" aria-hidden="true" />
@@ -46,8 +46,8 @@ export default function Contact() {
           <p className="section-copy mt-7">Share the problem, the stage you&apos;re at, and what a successful outcome looks like. I&apos;ll reply with a clear next step.</p>
 
           <div className="mt-10 space-y-4 text-sm text-[#aeb2ab]">
-            <a href={`mailto:${profile.email}`} className="flex items-center gap-3 transition hover:text-white"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10"><Mail size={16} /></span>{profile.email}</a>
-            <a href={`tel:${profile.phone.replaceAll(" ", "")}`} className="flex items-center gap-3 transition hover:text-white"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10"><Phone size={16} /></span>{profile.phone}</a>
+            <a href={`mailto:${profile.email}`} className="theme-hover-link flex items-center gap-3 transition"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10"><Mail size={16} /></span>{profile.email}</a>
+            <a href={`tel:${profile.phone.replaceAll(" ", "")}`} className="theme-hover-link flex items-center gap-3 transition"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10"><Phone size={16} /></span>{profile.phone}</a>
             <p className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full border border-white/10"><MapPin size={16} /></span>{profile.location}</p>
           </div>
         </Reveal>

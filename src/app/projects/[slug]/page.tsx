@@ -39,7 +39,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
     : [project.description, `Built with ${project.stack.join(", ")}.`];
 
   return (
-    <div className="min-h-screen bg-[#121513] pb-24 pt-32 text-[#f3f5f0]">
+    <div className="theme-surface min-h-screen pb-24 pt-32">
       <div className="site-shell">
         <Reveal>
           <Link href="/projects#project-archive" className="inline-flex items-center gap-2 text-sm text-[#92978f] transition hover:text-[#c9ff63]">
@@ -54,7 +54,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
             <p className="mt-8 max-w-3xl text-base leading-8 text-[#adb2aa] md:text-lg">{project.description}</p>
           </Reveal>
 
-          <Reveal delay={0.08} className="grid grid-cols-2 gap-5 rounded-[24px] border border-white/10 bg-white/[.035] p-5 text-sm lg:grid-cols-1">
+          <Reveal delay={0.08} className="theme-card grid grid-cols-2 gap-5 rounded-[24px] border p-5 text-sm lg:grid-cols-1">
             <div><p className="text-[9px] uppercase tracking-[.16em] text-[#70756e]">Timeline</p><p className="mt-2 text-[#e5e8e2]">{project.period}</p></div>
             <div><p className="text-[9px] uppercase tracking-[.16em] text-[#70756e]">Status</p><p className="mt-2 text-[#e5e8e2]">{status}</p></div>
           </Reveal>
@@ -70,7 +70,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
             <h2 className="mt-5 font-display text-4xl font-medium tracking-[-.045em] md:text-5xl">What went into the build.</h2>
             <div className="mt-8 space-y-4">
               {highlights.map((highlight) => (
-                <div key={highlight} className="flex gap-4 rounded-[22px] border border-white/10 bg-white/[.025] p-5">
+                <div key={highlight} className="theme-card flex gap-4 rounded-[22px] border p-5">
                   <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#c9ff63] text-[#10130f]"><Check size={14} strokeWidth={3} /></span>
                   <p className="text-sm leading-7 text-[#b1b6ae]">{highlight}</p>
                 </div>
@@ -78,7 +78,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08} className="rounded-[28px] border border-white/10 bg-[#191d1a] p-7 md:p-9">
+          <Reveal delay={0.08} className="theme-card rounded-[28px] border p-7 md:p-9">
             <span className="eyebrow">Technology</span>
             <div className="mt-6 flex flex-wrap gap-2">
               {project.stack.map((technology) => (
@@ -95,7 +95,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
                   </a>
                 )}
                 {github && (
-                  <a href={github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm text-white transition hover:border-[#c9ff63] hover:text-[#c9ff63]">
+                  <a href={github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm transition hover:border-[#c9ff63] hover:text-[#c9ff63]">
                     Source code <Github size={16} />
                   </a>
                 )}
@@ -106,7 +106,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
         </div>
 
         <Reveal className="mt-24 border-t border-white/10 pt-10">
-          <Link href={`/projects/${nextProject.slug}`} className="group flex items-end justify-between gap-6 rounded-[28px] border border-white/10 bg-white/[.025] p-7 transition hover:border-[#c9ff63]/40 hover:bg-white/[.045] md:p-10">
+          <Link href={`/projects/${nextProject.slug}`} className="theme-card group flex items-end justify-between gap-6 rounded-[28px] border p-7 transition hover:border-[#c9ff63]/40 md:p-10">
             <div>
               <span className="eyebrow">Next case study</span>
               <h2 className="mt-4 font-display text-3xl font-medium tracking-[-.04em] md:text-5xl">{nextProject.title}</h2>

@@ -15,13 +15,13 @@ export default function Hero() {
 
   return (
     <>
-      <section id="home" className="relative overflow-hidden pb-16 pt-28 md:min-h-screen md:pb-20 md:pt-32">
+      <section id="home" className="theme-page relative overflow-hidden pb-16 pt-28 md:min-h-screen md:pb-20 md:pt-32">
         <div className="hero-grid absolute inset-0" aria-hidden="true" />
         <div className="hero-orb" aria-hidden="true" />
 
         <div className="site-shell relative z-10 grid items-center gap-12 lg:grid-cols-[1.08fr_.92fr]">
           <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1, delayChildren: 0.1 }}>
-            <motion.div variants={item} transition={{ duration: 0.6 }} className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#b9bcb6]">
+            <motion.div variants={item} transition={{ duration: 0.6 }} className="theme-card mb-8 inline-flex items-center gap-3 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#b9bcb6]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c9ff63] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#c9ff63]" />
@@ -48,14 +48,14 @@ export default function Hero() {
 
             <motion.div variants={item} transition={{ duration: 0.6 }} className="mt-11 grid grid-cols-2 items-center gap-x-5 gap-y-4 text-sm text-[#858983] sm:flex sm:flex-wrap sm:gap-x-7">
               <span className="inline-flex items-center gap-2"><MapPin size={15} /> {profile.location}</span>
-              <motion.a href={profile.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-white" whileHover={{ x: 3 }}><Github size={15} /> GitHub</motion.a>
-              <motion.a href={profile.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-white" whileHover={{ x: 3 }}><Linkedin size={15} /> LinkedIn</motion.a>
+              <motion.a href={profile.github} target="_blank" rel="noreferrer" className="theme-hover-link inline-flex items-center gap-2 transition" whileHover={{ x: 3 }}><Github size={15} /> GitHub</motion.a>
+              <motion.a href={profile.linkedin} target="_blank" rel="noreferrer" className="theme-hover-link inline-flex items-center gap-2 transition" whileHover={{ x: 3 }}><Linkedin size={15} /> LinkedIn</motion.a>
             </motion.div>
           </motion.div>
 
           <motion.div className="hero-stage" initial={{ opacity: 0, scale: 0.94, rotateY: 8 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}>
             <div className="orbital-ring" aria-hidden="true" />
-            <div className="portrait-card">
+            <div className="always-dark portrait-card">
               <Image src="/myprofile.jpg" alt="Junaid Ali, Full Stack Developer" fill priority sizes="(max-width: 900px) 90vw, 42vw" />
               <div className="portrait-label">
                 <div>
@@ -66,13 +66,13 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="floating-panel top" aria-hidden="true">
+            <div className="always-dark floating-panel top" aria-hidden="true">
               <div className="mb-3 flex items-center justify-between text-[10px] uppercase tracking-[.13em] text-white/50"><span>System status</span><span className="h-2 w-2 rounded-full bg-[#c9ff63]" /></div>
               <p className="font-display text-lg">Shipped to production</p>
               <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[86%] rounded-full bg-[#c9ff63]" /></div>
             </div>
 
-            <div className="floating-panel bottom" aria-hidden="true">
+            <div className="always-dark floating-panel bottom" aria-hidden="true">
               <p className="text-[10px] uppercase tracking-[.13em] text-white/50">Core stack</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {skills.slice(0, 4).map((skill) => <span key={skill} className="rounded-full bg-white/[.08] px-2.5 py-1 text-[10px]">{skill}</span>)}

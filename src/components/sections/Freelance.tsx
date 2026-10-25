@@ -9,7 +9,7 @@ import { freelanceProfiles } from "@/constants/portfolio";
 export default function Freelance() {
   return (
     <ScrollSection
-      className="border-y border-white/10 bg-[#0b0d0c] py-10"
+      className="theme-page border-y py-10"
       ariaLabel="Freelance profiles"
       direction="scale"
     >
@@ -21,7 +21,7 @@ export default function Freelance() {
           </div>
           <div className="flex flex-wrap gap-2">
             {freelanceProfiles.map((platform) => (
-              <motion.a key={platform.name} href={platform.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-xs text-[#c3c7c0] transition hover:border-white/35 hover:text-white" whileHover={{ y: -4, scale: 1.03 }} whileTap={{ scale: 0.96 }}>
+              <motion.a key={platform.name} href={platform.href} target="_blank" rel="noreferrer" className="theme-hover-link inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-xs text-[#c3c7c0] transition hover:border-[#c9ff63]" whileHover={{ y: -4, scale: 1.03 }} whileTap={{ scale: 0.96 }}>
                 {platform.name} <ArrowUpRight size={13} />
               </motion.a>
             ))}

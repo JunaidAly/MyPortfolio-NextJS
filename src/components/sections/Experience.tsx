@@ -10,7 +10,7 @@ export default function Experience() {
   return (
     <ScrollSection
       id="experience"
-      className="section-pad bg-[#0b0d0c]"
+      className="theme-page section-pad section-compact-bottom"
       direction="left"
     >
       <div className="site-shell">
@@ -44,7 +44,7 @@ export default function Experience() {
           ))}
         </div>
 
-        <Reveal className="mt-10 flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[.035] p-6 sm:flex-row sm:items-center sm:justify-between">
+        <Reveal className="theme-card mt-10 flex flex-col gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-[#aeb2ab]"><span className="mr-2 text-[#c9ff63]">Education</span> BS Computer Science — COMSATS University Islamabad, 2020–2024</p>
           <span className="text-xs uppercase tracking-[.12em] text-[#71756f]">5+ years building for the web</span>
         </Reveal>
