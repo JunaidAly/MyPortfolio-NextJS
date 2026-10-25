@@ -30,8 +30,14 @@ export default function Navbar() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "theme-nav-scrolled border-b backdrop-blur-xl" : "bg-transparent"}`}>
-      <div className="site-shell flex h-[74px] items-center justify-between">
+    <header className={`fixed inset-x-0 top-0 z-50 transition-[padding] duration-300 ${scrolled ? "pt-3" : "pt-0"}`}>
+      <div
+        className={`site-shell flex items-center justify-between rounded-full border px-3 transition-[height,background-color,border-color,box-shadow] duration-300 md:px-5 ${
+          scrolled
+            ? "theme-nav-floating h-[62px] backdrop-blur-xl md:h-[66px]"
+            : "h-[74px] border-transparent bg-transparent"
+        }`}
+      >
         <Link href="/" className="group flex items-center gap-3" aria-label="Junaid Ali — Home">
           <span className="theme-brand-mark grid h-9 w-9 place-items-center rounded-full border font-display text-sm font-semibold transition-colors group-hover:border-[#c9ff63] group-hover:text-[#c9ff63]">JA</span>
           <span className="font-display text-[15px] font-medium tracking-tight">Junaid Ali</span>
@@ -60,7 +66,9 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.nav
-            className="theme-mobile-menu border-t px-5 py-6 backdrop-blur-xl md:hidden"
+            className={`theme-mobile-menu px-5 py-6 backdrop-blur-xl md:hidden ${
+              scrolled ? "site-shell mt-2 rounded-[26px] border shadow-2xl" : "border-t"
+            }`}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
