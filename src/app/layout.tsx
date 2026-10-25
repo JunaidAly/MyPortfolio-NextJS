@@ -70,6 +70,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   verification: { google: "50f10be814dc33ec" },
   alternates: { canonical: "https://junaidaly.vercel.app" },
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

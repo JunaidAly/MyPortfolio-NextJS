@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const navItems = [
+  { label: "Intro", href: "/#intro" },
   { label: "Work", href: "/#work" },
   { label: "Experience", href: "/#experience" },
   { label: "About", href: "/#about" },
