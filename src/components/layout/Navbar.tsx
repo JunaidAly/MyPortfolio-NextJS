@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/layout/ThemeToggle";
+import Magnetic from "@/components/ui/Magnetic";
 
 const navItems = [
   { label: "Intro", href: "/#intro" },
@@ -58,9 +59,11 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <a href="/My Resume.pdf" download="Junaid_Ali_Resume.pdf" className="button-secondary hidden min-h-[42px] px-4 text-xs md:inline-flex">
-            Resume <ArrowUpRight size={15} />
-          </a>
+          <Magnetic className="hidden md:inline-flex" strength={0.12}>
+            <a href="/My Resume.pdf" download="Junaid_Ali_Resume.pdf" className="button-secondary min-h-[42px] px-4 text-xs">
+              Resume <ArrowUpRight size={15} />
+            </a>
+          </Magnetic>
 
           <button type="button" onClick={() => setOpen((value) => !value)} className="theme-icon-button grid h-10 w-10 place-items-center rounded-full border md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
             {open ? <X size={19} /> : <Menu size={19} />}

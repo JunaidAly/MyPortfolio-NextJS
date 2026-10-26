@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Mail, MapPin, Phone, Send } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import ScrollSection from "@/components/ui/ScrollSection";
+import Magnetic from "@/components/ui/Magnetic";
 import { profile } from "@/constants/portfolio";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -86,9 +87,11 @@ export default function Contact() {
 
             <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-xs leading-5 text-[#747872]">Usually replies within 1–2 business days.</p>
-              <motion.button type="submit" disabled={status === "sending"} className="button-primary disabled:cursor-wait disabled:opacity-60" whileHover={status === "sending" ? undefined : { y: -4, scale: 1.025 }} whileTap={status === "sending" ? undefined : { scale: 0.97 }}>
-                {status === "sending" ? "Sending..." : "Send project brief"} {status === "sending" ? null : <Send size={16} />}
-              </motion.button>
+              <Magnetic className="inline-flex">
+                <motion.button type="submit" disabled={status === "sending"} className="button-primary disabled:cursor-wait disabled:opacity-60" whileHover={status === "sending" ? undefined : { y: -4, scale: 1.025 }} whileTap={status === "sending" ? undefined : { scale: 0.97 }}>
+                  {status === "sending" ? "Sending..." : "Send project brief"} {status === "sending" ? null : <Send size={16} />}
+                </motion.button>
+              </Magnetic>
             </div>
 
             <div aria-live="polite">

@@ -64,6 +64,26 @@ body {
   transition: color 220ms ease, background-color 220ms ease;
 }
 
+.cursor-glow {
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(201, 255, 99, 0.17) 0%, rgba(120, 222, 248, 0.07) 30%, transparent 70%);
+  filter: blur(12px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+html[data-theme="light"] .cursor-glow {
+  background: radial-gradient(circle, rgba(112, 164, 25, 0.12) 0%, rgba(120, 222, 248, 0.045) 32%, transparent 70%);
+  mix-blend-mode: multiply;
+}
+
 ::selection { color: var(--ink); background: var(--lime); }
 
 a, button, input, textarea { -webkit-tap-highlight-color: transparent; }
