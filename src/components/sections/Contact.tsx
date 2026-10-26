@@ -10,12 +10,26 @@ import { profile } from "@/constants/portfolio";
 
 type Status = "idle" | "sending" | "success" | "error";
 
+function getEmailError(error: unknown) {
+  if (typeof error === "object" && error !== null) {
+    const response = error as { status?: unknown; text?: unknown };
+    return {
+      status: typeof response.status === "number" ? response.status : 0,
+      text: typeof response.text === "string" ? response.text : "Unknown EmailJS error",
+    };
+  }
+
+  return { status: 0, text: error instanceof Error ? error.message : String(error) };
+}
+
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("The form could not send.");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("sending");
+    setErrorMessage("The form could not send.");
     const form = event.currentTarget;
 
     try {
@@ -27,7 +41,16 @@ export default function Contact() {
       );
       form.reset();
       setStatus("success");
-    } catch {
+    } catch (error: unknown) {
+      const emailError = getEmailError(error);
+      console.error("Contact form delivery failed", emailError);
+
+      if (emailError.status === 412) {
+        setErrorMessage("The email service is temporarily unavailable.");
+      } else if (emailError.status === 429) {
+        setErrorMessage("Too many messages were sent recently. Please wait a moment and try again.");
+      }
+
       setStatus("error");
     }
   }
@@ -53,7 +76,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <form onSubmit={handleSubmit} className="soft-card rounded-[28px] p-6 md:p-9">
+          <form id="contact-form" onSubmit={handleSubmit} className="soft-card rounded-[28px] p-6 md:p-9">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="grid gap-2 text-xs text-[#9ca099]">Your name<input className="input-field" name="from_name" placeholder="Name" required /></label>
               <label className="grid gap-2 text-xs text-[#9ca099]">Email address<input className="input-field" type="email" name="from_email" placeholder="you@company.com" required /></label>
@@ -68,8 +91,10 @@ export default function Contact() {
               </motion.button>
             </div>
 
-            {status === "success" && <p className="mt-5 flex items-center gap-2 rounded-xl bg-[#c9ff63]/10 p-3 text-sm text-[#c9ff63]"><CheckCircle2 size={17} /> Message sent. I&apos;ll be in touch.</p>}
-            {status === "error" && <p className="mt-5 rounded-xl bg-[#ff7648]/10 p-3 text-sm text-[#ff9a78]">The form could not send. Email me directly at <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-1 underline">{profile.email}<ArrowUpRight size={13} /></a>.</p>}
+            <div aria-live="polite">
+              {status === "success" && <p className="mt-5 flex items-center gap-2 rounded-xl bg-[#c9ff63]/10 p-3 text-sm text-[#c9ff63]"><CheckCircle2 size={17} /> Message sent. I&apos;ll be in touch.</p>}
+              {status === "error" && <p className="mt-5 rounded-xl bg-[#ff7648]/10 p-3 text-sm text-[#ff9a78]">{errorMessage} Email me directly at <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-1 underline">{profile.email}<ArrowUpRight size={13} /></a>.</p>}
+            </div>
           </form>
         </Reveal>
       </div>
