@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import RouteTransition from "@/components/layout/RouteTransition";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import JsonLd from "@/components/seo/JsonLd";
-import GradientCursor from "@/components/ui/GradientCursor";
+import FluidCursor from "@/components/ui/FluidCursor";
 import { profile, skills } from "@/constants/portfolio";
 import { DEFAULT_DESCRIPTION, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
@@ -125,7 +125,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <JsonLd data={websiteSchema} />
-        <GradientCursor />
+        <FluidCursor />
         <ScrollProgress />
         <Navbar />
         <main>

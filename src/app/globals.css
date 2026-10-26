@@ -64,18 +64,25 @@ body {
   transition: color 220ms ease, background-color 220ms ease;
 }
 
-.gradient-cursor-particle {
+.fluid-cursor-canvas {
   position: fixed;
+  inset: 0;
   z-index: 59;
-  border-radius: 999px;
+  display: block;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   mix-blend-mode: screen;
-  transform: translate(-50%, -50%);
-  will-change: transform, opacity;
+  opacity: 0.9;
 }
 
-html[data-theme="light"] .gradient-cursor-particle {
+html[data-theme="light"] .fluid-cursor-canvas {
   mix-blend-mode: multiply;
+  opacity: 0.72;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .fluid-cursor-canvas { display: none; }
 }
 
 ::selection { color: var(--ink); background: var(--lime); }
