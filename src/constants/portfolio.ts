@@ -84,7 +84,6 @@ const projectGalleries = {
   ],
   skillBridge: [
     "/projects/skillbridge/01.jpg",
-    "/projects/skillbridge/02.jpg",
     "/projects/skillbridge/03.jpg",
     "/projects/skillbridge/04.jpg",
     "/projects/skillbridge/05.jpg",
@@ -94,37 +93,28 @@ const projectGalleries = {
   adPulse: [
     "/projects/adpulse/01.jpg",
     "/projects/adpulse/02.jpg",
-    "/projects/adpulse/03.jpg",
     "/projects/adpulse/04.jpg",
     "/projects/adpulse/05.jpg",
-    "/projects/adpulse/06.jpg",
-    "/projects/adpulse/07.jpg",
   ],
   fimitAdmin: [
-    "/projects/fimit-admin/01.jpg",
     "/projects/fimit-admin/02.jpg",
     "/projects/fimit-admin/03.jpg",
     "/projects/fimit-admin/04.jpg",
   ],
   terabitWebsite: [
-    "/projects/terabit-website/01.jpg",
     "/projects/terabit-website/02.jpg",
     "/projects/terabit-website/03.jpg",
     "/projects/terabit-website/04.jpg",
   ],
   turkishMarketplace: [
-    "/projects/turkish-marketplace/01.jpg",
     "/projects/turkish-marketplace/02.jpg",
     "/projects/turkish-marketplace/03.jpg",
-    "/projects/turkish-marketplace/04.jpg",
   ],
   myStore: [
-    "/projects/mystore/01.jpg",
     "/projects/mystore/02.jpg",
     "/projects/mystore/03.jpg",
   ],
   mySunlight: [
-    "/projects/mysunlight/01.jpg",
     "/projects/mysunlight/02.jpg",
     "/projects/mysunlight/03.jpg",
     "/projects/mysunlight/04.jpg",
@@ -133,10 +123,8 @@ const projectGalleries = {
     "/projects/organization-task-tracker/01.jpg",
     "/projects/organization-task-tracker/02.jpg",
     "/projects/organization-task-tracker/03.jpg",
-    "/projects/organization-task-tracker/04.jpg",
   ],
   teaStation: [
-    "/projects/tea-station/01.jpg",
     "/projects/tea-station/02.jpg",
     "/projects/tea-station/03.jpg",
     "/projects/tea-station/04.jpg",
@@ -311,7 +299,7 @@ export const moreProjects = [
     stack: ["React.js", "Firebase Auth", "Firestore", "Tailwind CSS"],
     live: null,
     github: null,
-    gallery: projectGalleries.mySunlight,
+    gallery: [],
   },
   {
     slug: "global-connect-admin-panel",
