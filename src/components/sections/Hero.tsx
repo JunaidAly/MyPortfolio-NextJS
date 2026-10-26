@@ -34,16 +34,16 @@ export default function Hero() {
             </motion.p>
 
             <motion.h1 variants={item} transition={{ duration: 0.7 }} className="max-w-4xl font-display text-[clamp(3.2rem,8.7vw,7.6rem)] font-medium leading-[.87] tracking-[-.075em]">
-              I build digital products that <span className="text-[#8b8f89]">feel effortless.</span>
+              I build full-stack products that <span className="text-[#8b8f89]">feel effortless.</span>
             </motion.h1>
 
             <motion.p variants={item} transition={{ duration: 0.6 }} className="mt-8 max-w-2xl text-base leading-8 text-[#aeb2ab] md:text-lg">
-              I&apos;m {profile.name}. I turn complex product ideas into clear, scalable SaaS platforms, dashboards, and web experiences—from interface to API to launch.
+              I&apos;m {profile.name}, a full-stack and frontend developer. I turn complex ideas into clear, scalable SaaS platforms, dashboards, and web applications—from interface to API to launch.
             </motion.p>
 
             <motion.div variants={item} transition={{ duration: 0.6 }} className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
               <motion.a href="#work" className="button-primary" whileHover={{ y: -4, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 360, damping: 24 }}>Explore selected work <motion.span animate={{ y: [0, 3, 0], x: [0, 2, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}><ArrowDownRight size={17} /></motion.span></motion.a>
-              <motion.a href={`mailto:${profile.email}`} className="button-secondary" whileHover={{ y: -4, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 360, damping: 24 }}>Start a conversation <ArrowUpRight size={17} /></motion.a>
+              <motion.a href="/hire-full-stack-developer" className="button-secondary" whileHover={{ y: -4, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 360, damping: 24 }}>Hire me for a project <ArrowUpRight size={17} /></motion.a>
             </motion.div>
 
             <motion.div variants={item} transition={{ duration: 0.6 }} className="mt-11 grid grid-cols-2 items-center gap-x-5 gap-y-4 text-sm text-[#858983] sm:flex sm:flex-wrap sm:gap-x-7">

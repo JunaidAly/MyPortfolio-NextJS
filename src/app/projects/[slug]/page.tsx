@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Github } from "lucide-react";
 import CaseStudyGallery from "@/components/projects/CaseStudyGallery";
+import JsonLd from "@/components/seo/JsonLd";
 import Reveal from "@/components/ui/Reveal";
 import { allProjects, getProjectBySlug } from "@/constants/portfolio";
+import { createPageMetadata, SITE_URL } from "@/lib/seo";
 
 type ProjectPageProps = { params: { slug: string } };
 
@@ -15,14 +17,18 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: ProjectPageProps): Metadata {
   const project = getProjectBySlug(params.slug);
 
-  if (!project) return { title: "Project not found" };
+  if (!project) return { title: "Project not found", robots: { index: false, follow: false } };
+
+  const metadata = createPageMetadata({
+    title: `${project.title} — Full Stack Case Study`,
+    description: project.description,
+    path: `/projects/${project.slug}`,
+    image: project.gallery[0] || "/myprofile.jpg",
+  });
 
   return {
-    title: `${project.title} Case Study`,
-    description: project.description,
-    openGraph: project.gallery[0]
-      ? { images: [{ url: project.gallery[0], alt: `${project.title} case study` }] }
-      : undefined,
+    ...metadata,
+    keywords: [project.title, project.category, ...project.stack, "web development case study"],
   };
 }
 
@@ -42,9 +48,34 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
   const highlights = "highlights" in project
     ? project.highlights
     : [project.description, `Built with ${project.stack.join(", ")}.`];
+  const projectUrl = `${SITE_URL}/projects/${project.slug}`;
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "@id": `${projectUrl}#case-study`,
+      url: projectUrl,
+      name: `${project.title} case study`,
+      description: project.description,
+      image: project.gallery.map((image) => `${SITE_URL}${image}`),
+      creator: { "@id": `${SITE_URL}/#person` },
+      keywords: project.stack.join(", "),
+      sameAs: project.live || undefined,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_URL}/projects` },
+        { "@type": "ListItem", position: 3, name: project.title, item: projectUrl },
+      ],
+    },
+  ];
 
   return (
     <div className="theme-surface min-h-screen pb-24 pt-32">
+      <JsonLd data={schema} />
       <div className="site-shell">
         <Reveal>
           <Link href="/projects#project-archive" className="inline-flex items-center gap-2 text-sm text-[#92978f] transition hover:text-[#c9ff63]">

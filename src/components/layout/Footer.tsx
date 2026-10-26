@@ -17,7 +17,10 @@ export default function Footer() {
       </div>
       <div className="site-shell flex flex-col gap-3 border-t border-white/10 py-5 text-xs text-[#747872] sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} Junaid Ali. Built with Next.js.</p>
-        <a href="/#home" className="theme-hover-link inline-flex items-center gap-2 transition">Back to top <ArrowUpRight size={13} /></a>
+        <div className="flex flex-wrap items-center gap-5">
+          <a href="/hire-full-stack-developer" className="theme-hover-link transition">Hire a full-stack developer</a>
+          <a href="/#home" className="theme-hover-link inline-flex items-center gap-2 transition">Back to top <ArrowUpRight size={13} /></a>
+        </div>
       </div>
     </footer>
   );

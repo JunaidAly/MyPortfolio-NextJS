@@ -5,6 +5,9 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RouteTransition from "@/components/layout/RouteTransition";
 import ScrollProgress from "@/components/layout/ScrollProgress";
+import JsonLd from "@/components/seo/JsonLd";
+import { profile, skills } from "@/constants/portfolio";
+import { DEFAULT_DESCRIPTION, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const themeScript = `
   (function () {
@@ -35,41 +38,46 @@ const body = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://junaidaly.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Junaid Ali — Full Stack Developer",
-    template: "%s — Junaid Ali",
+    default: "Junaid Ali | Full Stack & Frontend Developer",
+    template: "%s | Junaid Ali",
   },
-  description:
-    "Full Stack Developer in Islamabad building polished SaaS platforms, dashboards, booking systems, and AI-enabled web products with React, Next.js, Node.js, and Supabase.",
-  keywords: [
-    "Junaid Ali",
-    "Full Stack Developer",
-    "Next.js Developer",
-    "React Developer",
-    "SaaS Developer",
-    "Islamabad",
-  ],
-  authors: [{ name: "Junaid Ali" }],
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [...SEO_KEYWORDS, "Junaid Ali"],
+  authors: [{ name: profile.name, url: SITE_URL }],
   creator: "Junaid Ali",
+  publisher: "Junaid Ali",
+  category: "technology",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://junaidaly.vercel.app/",
-    siteName: "Junaid Ali — Portfolio",
-    title: "Junaid Ali — Full Stack Developer",
-    description: "Digital products engineered with clarity, performance, and a strong product sense.",
-    images: [{ url: "/myprofile.jpg", width: 1200, height: 1200, alt: "Junaid Ali" }],
+    url: "/",
+    siteName: SITE_NAME,
+    title: "Junaid Ali | Full Stack & Frontend Developer",
+    description: DEFAULT_DESCRIPTION,
+    images: [{ url: "/myprofile.jpg", width: 1200, height: 1200, alt: "Junaid Ali, full-stack developer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Junaid Ali — Full Stack Developer",
-    description: "Digital products engineered with clarity, performance, and a strong product sense.",
+    title: "Junaid Ali | Full Stack & Frontend Developer",
+    description: DEFAULT_DESCRIPTION,
     images: ["/myprofile.jpg"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   verification: { google: "50f10be814dc33ec" },
-  alternates: { canonical: "https://junaidaly.vercel.app" },
+  alternates: { canonical: "/" },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     shortcut: "/favicon.svg",
@@ -77,12 +85,45 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        description: DEFAULT_DESCRIPTION,
+        inLanguage: "en",
+        publisher: { "@id": `${SITE_URL}/#person` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        name: profile.name,
+        url: SITE_URL,
+        image: `${SITE_URL}/myprofile.jpg`,
+        jobTitle: "Full Stack Developer",
+        description: DEFAULT_DESCRIPTION,
+        email: `mailto:${profile.email}`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Islamabad",
+          addressCountry: "PK",
+        },
+        sameAs: [profile.github, profile.linkedin],
+        knowsAbout: [...skills, "Frontend Development", "SaaS Development", "Web Application Development"],
+      },
+    ],
+  };
+
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <JsonLd data={websiteSchema} />
         <ScrollProgress />
         <Navbar />
         <main>

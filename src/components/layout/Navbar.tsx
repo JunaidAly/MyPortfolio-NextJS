@@ -39,7 +39,12 @@ export default function Navbar() {
         }`}
       >
         <Link href="/" className="group flex items-center gap-3" aria-label="Junaid Ali — Home">
-          <span className="theme-brand-mark grid h-9 w-9 place-items-center rounded-full border font-display text-sm font-semibold transition-colors group-hover:border-[#c9ff63] group-hover:text-[#c9ff63]">JA</span>
+          <span className="grid h-9 w-9 place-items-center rounded-[11px] bg-[#c9ff63] text-[#0b0d0c] shadow-[0_0_0_1px_rgba(201,255,99,0.2),0_8px_24px_rgba(201,255,99,0.12)] transition-transform duration-200 group-hover:-rotate-3 group-hover:scale-105">
+            <svg viewBox="0 0 36 36" className="h-6 w-6" aria-hidden="true">
+              <path d="M10 8.5h15v11.8c0 5-3.2 8.2-8.1 8.2-4.3 0-7.2-2.4-7.7-6.4h4.6c.4 1.7 1.5 2.6 3.2 2.6 2.2 0 3.5-1.5 3.5-4.3v-8H10v-3.9Z" fill="currentColor" />
+              <circle cx="27.5" cy="8.5" r="2.5" fill="currentColor" />
+            </svg>
+          </span>
           <span className="font-display text-[15px] font-medium tracking-tight">Junaid Ali</span>
         </Link>
 

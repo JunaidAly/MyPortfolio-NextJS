@@ -1,9 +1,11 @@
 import Freelance from '@/components/sections/Freelance'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Freelance Profiles',
-  description: 'Work with Junaid Ali through Upwork, Fiverr, Freelancer, or Guru.',
-}
+export const metadata = createPageMetadata({
+  title: 'Freelance Full Stack Developer Profiles',
+  description: 'Hire Junaid Ali for freelance full-stack and frontend development through Upwork, Fiverr, Freelancer, Guru, or direct contact.',
+  path: '/freelance',
+})
 
 export default function FreelancePage() {
   return (
