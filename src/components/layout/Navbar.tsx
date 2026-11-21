@@ -1,25 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import Magnetic from "@/components/ui/Magnetic";
 
+const SCROLL_TARGET_KEY = "portfolio-scroll-target";
+
 const navItems = [
-  { label: "Intro", href: "/#intro" },
-  { label: "Work", href: "/#work" },
-  { label: "Experience", href: "/#experience" },
-  { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Intro", sectionId: "intro" },
+  { label: "Work", sectionId: "work" },
+  { label: "Experience", sectionId: "experience" },
+  { label: "About", sectionId: "about" },
+  { label: "Contact", sectionId: "contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -28,7 +31,34 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    if (pathname !== "/") return;
+
+    const targetId = sessionStorage.getItem(SCROLL_TARGET_KEY);
+    if (!targetId) return;
+
+    sessionStorage.removeItem(SCROLL_TARGET_KEY);
+    requestAnimationFrame(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+    });
+  }, [pathname]);
+
+  const handleSectionClick = (event: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    event.preventDefault();
+    setOpen(false);
+
+    if (pathname === "/") {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      if (window.location.hash) {
+        window.history.replaceState(null, "", "/");
+      }
+      return;
+    }
+
+    sessionStorage.setItem(SCROLL_TARGET_KEY, sectionId);
+    router.push("/");
+  };
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-[padding] duration-300 ${scrolled ? "pt-3" : "pt-0"}`}>
@@ -51,7 +81,12 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <Link key={item.label} href={item.href} className="theme-nav-link rounded-full px-4 py-2 text-[13px] transition-colors">
+            <Link
+              key={item.label}
+              href="/"
+              onClick={(event) => handleSectionClick(event, item.sectionId)}
+              className="theme-nav-link rounded-full px-4 py-2 text-[13px] transition-colors"
+            >
               {item.label}
             </Link>
           ))}
@@ -83,7 +118,12 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
-                <Link key={item.label} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 font-display text-2xl hover:bg-white/5">
+                <Link
+                  key={item.label}
+                  href="/"
+                  onClick={(event) => handleSectionClick(event, item.sectionId)}
+                  className="rounded-xl px-4 py-3 font-display text-2xl hover:bg-white/5"
+                >
                   {item.label}
                 </Link>
               ))}

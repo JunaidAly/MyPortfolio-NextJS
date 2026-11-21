@@ -39,12 +39,27 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p variants={item} transition={{ duration: 0.6 }} className="mt-8 max-w-2xl text-base leading-8 text-[#aeb2ab] md:text-lg">
-              I&apos;m {profile.name}, a full-stack and frontend developer. I turn complex ideas into clear, scalable SaaS platforms, dashboards, and web applications—from interface to API to launch.
+              I&apos;m {profile.name}, a full-stack and frontend developer. I turn complex ideas into clear, scalable SaaS platforms, dashboards, and web applications from interface to API to launch.
             </motion.p>
 
             <motion.div variants={item} transition={{ duration: 0.6 }} className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
               <Magnetic className="inline-flex">
-                <motion.a href="#work" className="button-primary" whileHover={{ y: -4, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 360, damping: 24 }}>Explore selected work <motion.span animate={{ y: [0, 3, 0], x: [0, 2, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}><ArrowDownRight size={17} /></motion.span></motion.a>
+                <motion.a
+                  href="/"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+                    if (window.location.hash) {
+                      window.history.replaceState(null, "", "/");
+                    }
+                  }}
+                  className="button-primary"
+                  whileHover={{ y: -4, scale: 1.025 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 360, damping: 24 }}
+                >
+                  Explore selected work <motion.span animate={{ y: [0, 3, 0], x: [0, 2, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}><ArrowDownRight size={17} /></motion.span>
+                </motion.a>
               </Magnetic>
               <Magnetic className="inline-flex">
                 <motion.a href="/hire-full-stack-developer" className="button-secondary" whileHover={{ y: -4, scale: 1.025 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 360, damping: 24 }}>Hire me for a project <ArrowUpRight size={17} /></motion.a>

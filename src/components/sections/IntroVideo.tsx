@@ -22,7 +22,7 @@ export default function IntroVideo() {
             </h2>
           </div>
           <p className="section-copy">
-            Get to know me beyond the code—my background, the way I approach product work, and what clients can expect when we collaborate.
+            Get to know me beyond the code my background, the way I approach product work, and what clients can expect when we collaborate.
           </p>
         </Reveal>
 

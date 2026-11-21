@@ -50,20 +50,20 @@ export const experiences = [
   {
     period: "2025 — Present",
     role: "Full Stack Developer",
-    company: "CalibreOn International · NorthSpex",
+    company: "CalibreOn International (NorthSpex) · Upwork Freelance",
     location: "Remote",
     description:
-      "Building multi-client SaaS products with React, Next.js, and Node.js, while shaping REST APIs, system architecture, cloud delivery, and UI/UX across the software division.",
-    skills: ["Next.js", "Node.js", "SaaS", "Cloud"],
+      "Building scalable web and SaaS applications for multiple clients using React.js, Next.js, and Node.js, designing RESTful APIs and system architecture, managing cloud-based deployments, and contributing to UI/UX design across the software division.",
+    skills: ["React.js", "Next.js", "Node.js", "REST APIs", "Cloud"],
   },
   {
-    period: "2024 — Present",
+    period: "2024 — 2025",
     role: "Full Stack Developer",
     company: "TeraBit IT Company",
     location: "Islamabad",
     description:
-      "Delivered a three-portal booking ecosystem, an AR content admin, a Turkish classifieds platform, and a modular company website for production use.",
-    skills: ["React", "TypeScript", "Supabase", "Admin systems"],
+      "Built Primus Booking, a 3-portal SaaS ecosystem (Customer, Business, Admin) with Next.js, TypeScript, and Supabase; developed an admin panel for an AR-based web app with real-time content management; contributed to a Turkish classifieds platform modeled on Sahibinden.com; and built the modular, SEO-friendly company website in React.js.",
+    skills: ["Next.js", "React.js", "TypeScript", "Supabase"],
   },
   {
     period: "2024",
@@ -71,8 +71,8 @@ export const experiences = [
     company: "Social Swirl",
     location: "Remote",
     description:
-      "Built reusable React interfaces and partnered with design and backend teams to ship responsive, consistent product experiences.",
-    skills: ["React", "API integration", "Design systems"],
+      "Built responsive React.js interfaces for production web applications in a fully remote team, collaborating with design and backend teams to integrate APIs and creating reusable components that standardized layouts and improved UX consistency.",
+    skills: ["React.js", "API Integration", "Reusable UI"],
   },
 ] as const;
 
@@ -495,8 +495,8 @@ export function getProjectBySlug(slug: string) {
 }
 
 export const freelanceProfiles = [
-  { name: "Upwork", href: "https://www.upwork.com/freelancers/~018161b863407dcb92?mp_source=share" },
+  { name: "Upwork", href: "https://www.upwork.com/freelancers/~01dfd95ce1afbfc610?mp_source=share" },
   { name: "Fiverr", href: "https://www.fiverr.com/s/VYK4Ag5" },
-  { name: "Freelancer", href: "https://www.freelancer.com/u/juanidalikhan03?frm=juanidalikhan03&sb=t" },
-  { name: "Guru", href: "https://www.guru.com/freelancers/junaid-ali-39" },
+  { name: "Freelancer", href: "https://www.freelancer.pk/u/junaidaly131?frm=junaidaly131&sb=t" },
+  { name: "Guru", href: "https://www.guru.com/freelancers/junaid-aly" },
 ] as const;

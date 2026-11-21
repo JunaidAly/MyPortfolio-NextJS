@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { profile } from "@/constants/portfolio";
 
@@ -19,7 +21,13 @@ export default function Footer() {
         <p>© {new Date().getFullYear()} Junaid Ali. Built with Next.js.</p>
         <div className="flex flex-wrap items-center gap-5">
           <a href="/hire-full-stack-developer" className="theme-hover-link transition">Hire a full-stack developer</a>
-          <a href="/#home" className="theme-hover-link inline-flex items-center gap-2 transition">Back to top <ArrowUpRight size={13} /></a>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="theme-hover-link inline-flex items-center gap-2 transition"
+          >
+            Back to top <ArrowUpRight size={13} />
+          </button>
         </div>
       </div>
     </footer>
