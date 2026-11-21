@@ -23,7 +23,8 @@ function getEmailError(error: unknown) {
   return { status: 0, text: error instanceof Error ? error.message : String(error) };
 }
 
-export default function Contact() {
+export default function Contact({ asPage = false }: { asPage?: boolean } = {}) {
+  const HeadingTag = asPage ? "h1" : "h2";
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("The form could not send.");
 
@@ -33,13 +34,18 @@ export default function Contact() {
     setErrorMessage("The form could not send.");
     const form = event.currentTarget;
 
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setErrorMessage("The contact service is not configured in this environment.");
+      setStatus("error");
+      return;
+    }
+
     try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_v0jnvxb",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_h3dciu9",
-        form,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "E3qkJpavCm_7nv8Bw",
-      );
+      await emailjs.sendForm(serviceId, templateId, form, publicKey);
       form.reset();
       setStatus("success");
     } catch (error: unknown) {
@@ -66,7 +72,7 @@ export default function Contact() {
       <div className="site-shell relative z-10 grid gap-14 lg:grid-cols-[.85fr_1.15fr]">
         <Reveal>
           <span className="eyebrow">Start a conversation</span>
-          <h2 className="section-title">Have a product in mind? <span className="text-[#c9ff63]">Let&apos;s make it real.</span></h2>
+          <HeadingTag className="section-title">Have a product in mind? <span className="text-[#c9ff63]">Let&apos;s make it real.</span></HeadingTag>
           <p className="section-copy mt-7">Share the problem, the stage you&apos;re at, and what a successful outcome looks like. I&apos;ll reply with a clear next step.</p>
 
           <div className="mt-10 space-y-4 text-sm text-[#aeb2ab]">

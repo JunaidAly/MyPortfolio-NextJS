@@ -130,7 +130,8 @@ function ProjectMediaCarousel({
   );
 }
 
-export default function Projects() {
+export default function Projects({ asPage = false }: { asPage?: boolean } = {}) {
+  const HeadingTag = asPage ? "h1" : "h2";
   const [visibleProjects, setVisibleProjects] = useState(PROJECTS_PER_PAGE);
   const allProjectsVisible = visibleProjects >= orderedMoreProjects.length;
 
@@ -152,7 +153,7 @@ export default function Projects() {
         <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <span className="eyebrow">Selected work</span>
-            <h2 className="section-title">Complex systems, <span className="text-[#7f837d]">made clear.</span></h2>
+            <HeadingTag className="section-title">Complex systems, <span className="text-[#7f837d]">made clear.</span></HeadingTag>
           </div>
           <p className="section-copy max-w-lg">Explore real product screens, move through each gallery, then open the complete case study for the build details.</p>
         </Reveal>

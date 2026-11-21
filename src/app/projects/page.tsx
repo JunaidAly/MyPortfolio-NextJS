@@ -11,7 +11,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function Projects() {
   return (
     <div className="pt-[74px]">
-      <ProjectComponent />
+      <ProjectComponent asPage />
     </div>
   );
 }

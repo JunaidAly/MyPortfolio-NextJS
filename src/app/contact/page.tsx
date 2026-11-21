@@ -10,7 +10,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function Contact() {
   return (
     <div className="pt-[74px]">
-      <ContactComponent />
+      <ContactComponent asPage />
     </div>
   );
 }

@@ -15,9 +15,9 @@
 ## Core Technical Stack
 
 - Frontend: React.js, Next.js (App Router), TypeScript, JavaScript, Angular, Tailwind CSS, shadcn/ui, Framer Motion, HTML5, CSS3
-- Backend: Node.js, Express.js, NestJS, Python, FastAPI, PHP, Laravel, RESTful APIs, Socket.IO (WebSockets)
+- Backend: Node.js, Express.js, Python, FastAPI, PHP, Laravel, RESTful APIs, Socket.IO (WebSockets)
 - Databases & BaaS: PostgreSQL, Supabase, MongoDB, MySQL, Firebase (Firestore, Auth, Cloud Functions)
-- Mobile: React Native, Flutter
+- Mobile: React Native
 - AI & Machine Learning: scikit-learn, TF-IDF Vectorization, Cosine Similarity, Recommendation Microservices
 - Cloud & DevOps: AWS (S3), Vercel, Netlify, Render, Docker, Jenkins, CI/CD, Git, GitHub
 

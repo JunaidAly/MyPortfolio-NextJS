@@ -9,5 +9,5 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function Experience() {
-  return <div className="pt-[74px]"><ExperienceComponent /></div>;
+  return <div className="pt-[74px]"><ExperienceComponent asPage /></div>;
 }

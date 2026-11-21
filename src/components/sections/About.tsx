@@ -6,7 +6,8 @@ import Reveal from "@/components/ui/Reveal";
 import ScrollSection from "@/components/ui/ScrollSection";
 import { capabilities, profile } from "@/constants/portfolio";
 
-export default function About() {
+export default function About({ asPage = false }: { asPage?: boolean } = {}) {
+  const HeadingTag = asPage ? "h1" : "h2";
   return (
     <ScrollSection
       id="about"
@@ -17,7 +18,7 @@ export default function About() {
         <Reveal>
           <span className="eyebrow !text-[#5f635d]">What I bring</span>
           <div className="grid gap-9 lg:grid-cols-[1fr_.65fr] lg:items-end">
-            <h2 className="section-title">Product thinking, <span className="text-[#777b74]">engineering depth.</span></h2>
+            <HeadingTag className="section-title">Product thinking, <span className="text-[#777b74]">engineering depth.</span></HeadingTag>
             <p className="text-base leading-8 text-[#555951]">I work across the product surface—not just isolated screens. That means clearer architecture, fewer handoff gaps, and experiences that remain maintainable after launch.</p>
           </div>
         </Reveal>

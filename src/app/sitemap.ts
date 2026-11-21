@@ -15,6 +15,7 @@ const PRIORITY_PROJECT_SLUGS = new Set([
   "terabit-it-website",
   "beam-balance",
   "organization-task-tracker",
+  "turkish-ecommerce-platform",
 ]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -61,15 +62,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
-    {
-      url: `${SITE_URL}/freelance`,
-      lastModified: UPDATED_RECENT,
-      changeFrequency: "monthly",
-      priority: 0.65,
-    },
   ];
 
-  const projectPages: MetadataRoute.Sitemap = allProjects.map((project) => {
+  // Include only substantive project case studies (enriched case studies or projects with live URLs, repositories, or screenshot galleries).
+  const indexableProjects = allProjects.filter(
+    (project) =>
+      PRIORITY_PROJECT_SLUGS.has(project.slug) ||
+      Boolean(project.live) ||
+      Boolean("github" in project && project.github) ||
+      project.gallery.length > 0,
+  );
+
+  const projectPages: MetadataRoute.Sitemap = indexableProjects.map((project) => {
     const isPriority = PRIORITY_PROJECT_SLUGS.has(project.slug);
     return {
       url: `${SITE_URL}/projects/${project.slug}`,

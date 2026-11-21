@@ -143,12 +143,12 @@ export const projects = [
     overview:
       "Primus Booking is a multi-portal appointment booking SaaS ecosystem connecting customers, service businesses (`biz.primusbooking.com`), and platform administrators through dedicated web and mobile-ready experiences.",
     contribution:
-      "Architected and built the 3-portal web application ecosystem (Customer, Business, and Admin portals) during my role as a Full Stack Developer at TeraBit IT Company, working alongside cross-platform mobile (Flutter) and product workflows.",
+      "Contributed to the 3-portal web application architecture (Customer, Business, and Admin portals) during my role as a Full Stack Developer at TeraBit IT Company, implementing Next.js App Router views, Supabase authentication flows, middleware RBAC, and booking modules.",
     architecture:
-      "Built on Next.js (App Router) and React with TypeScript, backed by Supabase (PostgreSQL, Supabase Auth, and Row-Level Security). Next.js middleware enforces strict role-based access control (RBAC) across customer, business, and admin boundaries.",
+      "Built on Next.js (App Router) and React with TypeScript, backed by Supabase (PostgreSQL and Supabase Auth). Next.js middleware enforces strict role-based access control (RBAC) across customer, business, and admin boundaries.",
     challenges:
       "Coordinating multi-role authentication (email, Google OAuth, verification, and password recovery) and shared booking, scheduling, and loyalty reward-points state across three portals without data leakage—solved with Next.js route middleware and PostgreSQL relational policies.",
-    stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Flutter"],
+    stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL"],
     live: "https://primusbooking.com/",
     accent: "lime",
     metric: "3 connected portals",

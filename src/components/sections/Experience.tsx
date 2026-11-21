@@ -6,7 +6,8 @@ import Reveal from "@/components/ui/Reveal";
 import ScrollSection from "@/components/ui/ScrollSection";
 import { experiences } from "@/constants/portfolio";
 
-export default function Experience() {
+export default function Experience({ asPage = false }: { asPage?: boolean } = {}) {
+  const HeadingTag = asPage ? "h1" : "h2";
   return (
     <ScrollSection
       id="experience"
@@ -17,7 +18,7 @@ export default function Experience() {
         <Reveal className="grid gap-8 lg:grid-cols-[.75fr_1.25fr]">
           <div>
             <span className="eyebrow">Experience</span>
-            <h2 className="section-title">Built in real teams, <span className="text-[#7c807a]">for real users.</span></h2>
+            <HeadingTag className="section-title">Built in real teams, <span className="text-[#7c807a]">for real users.</span></HeadingTag>
           </div>
           <p className="section-copy self-end lg:justify-self-end">From client platforms to internal systems, I&apos;ve worked across the full delivery cycle: interface design, architecture, data, integrations, and deployment.</p>
         </Reveal>

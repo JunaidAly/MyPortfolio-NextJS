@@ -45,27 +45,39 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
       : null;
   const highlights = "highlights" in project
     ? project.highlights
-    : [project.description, `Built with ${project.stack.join(", ")}.`];
+    : [
+        `${project.category} delivered during ${project.period} (${status}).`,
+        `Engineered with ${project.stack.join(", ")}.`,
+        project.live
+          ? "Deployed and accessible as a live production web experience."
+          : github
+            ? "Source code and implementation available on GitHub."
+            : "Built for private client operations and internal team workflows.",
+      ];
   const overview = "overview" in project ? project.overview : project.description;
   const contribution =
     "contribution" in project
       ? project.contribution
-      : `Designed and implemented key application features, user interfaces, and data workflows using ${project.stack.join(", ")}.`;
+      : `Implemented key application views, component workflows, and integrations using ${project.stack.join(", ")}.`;
   const architecture =
     "architecture" in project
       ? project.architecture
-      : `Built with ${project.stack.join(", ")}, structured for maintainable component boundaries and reliable runtime performance.`;
+      : `Structured around ${project.stack.join(", ")} with modular components and responsive layout patterns.`;
   const challenges = "challenges" in project ? project.challenges : null;
 
   const projectUrl = `${SITE_URL}/projects/${project.slug}`;
-  const isLiveSoftware =
-    Boolean(project.live && !project.live.includes("youtube.com")) ||
-    project.category.toLowerCase().includes("saas") ||
-    project.category.toLowerCase().includes("dashboard") ||
-    project.category.toLowerCase().includes("application") ||
-    project.category.toLowerCase().includes("system");
+  const categoryLower = project.category.toLowerCase();
+  const isSoftwareApplication =
+    categoryLower.includes("saas") ||
+    categoryLower.includes("dashboard") ||
+    categoryLower.includes("admin") ||
+    categoryLower.includes("skill exchange") ||
+    categoryLower.includes("document management") ||
+    categoryLower.includes("operations") ||
+    categoryLower.includes("application") ||
+    categoryLower.includes("system");
 
-  const primaryEntitySchema = isLiveSoftware
+  const primaryEntitySchema = isSoftwareApplication
     ? {
         "@context": "https://schema.org",
         "@type": ["SoftwareApplication", "CreativeWork"],
@@ -90,6 +102,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
         "@id": `${projectUrl}#case-study`,
         url: projectUrl,
         name: `${project.title} case study`,
+        headline: `${project.title} — ${project.category} Case Study`,
         description: overview,
         ...(project.gallery.length
           ? { image: project.gallery.map((image) => `${SITE_URL}${image}`) }

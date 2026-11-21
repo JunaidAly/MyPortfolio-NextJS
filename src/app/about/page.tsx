@@ -19,5 +19,5 @@ export default function About() {
     mainEntity: { "@id": `${SITE_URL}/#person` },
   };
 
-  return <div className="pt-[74px]"><JsonLd data={schema} /><AboutComponent /></div>;
+  return <div className="pt-[74px]"><JsonLd data={schema} /><AboutComponent asPage /></div>;
 }
