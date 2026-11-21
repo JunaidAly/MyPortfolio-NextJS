@@ -39,7 +39,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p variants={item} transition={{ duration: 0.6 }} className="mt-8 max-w-2xl text-base leading-8 text-[#aeb2ab] md:text-lg">
-              I build scalable web applications, SaaS platforms and digital products using React, Next.js and Node.js—engineering everything from responsive TypeScript interfaces to MERN stack APIs, Supabase/PostgreSQL databases, and cloud deployments.
+              I build scalable web applications, SaaS platforms and digital products using React, Next.js and Node.js engineering everything from responsive TypeScript interfaces to MERN stack APIs, Supabase/PostgreSQL databases, and cloud deployments.
             </motion.p>
 
             <motion.div variants={item} transition={{ duration: 0.6 }} className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
