@@ -137,15 +137,28 @@ export const projects = [
     index: "01",
     title: "Primus Booking",
     category: "Multi-platform SaaS ecosystem",
-    period: "2025 — Present",
+    period: "Mar 2025 — Present",
     description:
-      "Customer, business, and admin portals connected through one booking platform, with secure authentication, scheduling, rewards, and role-aware workflows.",
-    stack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
+      "Customer, business, and admin portals connected through one appointment booking platform, with secure authentication, scheduling, rewards, and role-aware workflows.",
+    overview:
+      "Primus Booking is a multi-portal appointment booking SaaS ecosystem connecting customers, service businesses (`biz.primusbooking.com`), and platform administrators through dedicated web and mobile-ready experiences.",
+    contribution:
+      "Architected and built the 3-portal web application ecosystem (Customer, Business, and Admin portals) during my role as a Full Stack Developer at TeraBit IT Company, working alongside cross-platform mobile (Flutter) and product workflows.",
+    architecture:
+      "Built on Next.js (App Router) and React with TypeScript, backed by Supabase (PostgreSQL, Supabase Auth, and Row-Level Security). Next.js middleware enforces strict role-based access control (RBAC) across customer, business, and admin boundaries.",
+    challenges:
+      "Coordinating multi-role authentication (email, Google OAuth, verification, and password recovery) and shared booking, scheduling, and loyalty reward-points state across three portals without data leakage—solved with Next.js route middleware and PostgreSQL relational policies.",
+    stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Flutter"],
     live: "https://primusbooking.com/",
     accent: "lime",
     metric: "3 connected portals",
     gallery: projectGalleries.primusBooking,
-    highlights: ["Three connected product portals", "Secure authentication and role-aware access", "Booking, scheduling, and rewards workflows"],
+    highlights: [
+      "Architected separate Customer, Business, and Admin portals on Next.js App Router + TypeScript",
+      "Implemented Supabase Auth with email, Google OAuth, email verification, and password recovery",
+      "Enforced role-based access control (RBAC) across all portals using Next.js middleware",
+      "Built appointment booking, scheduling, and reward-points modules on PostgreSQL (Supabase)",
+    ],
   },
   {
     slug: "skillbridge",
@@ -153,15 +166,29 @@ export const projects = [
     title: "SkillBridge",
     ownerBadge: "MY OWN PRODUCT",
     category: "AI-powered skill exchange",
-    period: "2025 — Present",
+    period: "Jun 2025 — Present",
     description:
       "A MERN marketplace that matches students with teachers through a FastAPI recommendation service, with real-time chat, meetings, credits, OAuth, and 2FA.",
-    stack: ["React", "Node.js", "MongoDB", "FastAPI"],
+    overview:
+      "SkillBridge is an AI-powered peer-to-peer skill exchange and learning platform that connects learners with instructors through intelligent skill matching, real-time communication, guided AI learning workflows, and a credit-based session economy.",
+    contribution:
+      "Conceived, architected, and built the complete full-stack product end to end—including the React frontend, Node.js/Express REST API, Socket.IO real-time messaging server, and the Python FastAPI machine-learning recommendation microservice.",
+    architecture:
+      "Full-stack MERN architecture (MongoDB, Express.js, React.js, Node.js) paired with an independent Python FastAPI + scikit-learn recommendation microservice deployed on Render using TF-IDF vectorization and cosine similarity.",
+    challenges:
+      "Delivering low-latency teacher recommendations and real-time learner-instructor coordination—solved by decoupling the scikit-learn TF-IDF/cosine-similarity engine into a FastAPI microservice and implementing Socket.IO presence, typing indicators, and credit-escrow session scheduling.",
+    stack: ["React", "Node.js", "Express.js", "MongoDB", "FastAPI", "scikit-learn", "Socket.IO"],
     live: "https://www.skill-bridge.me/",
     accent: "cyan",
     metric: "AI + real-time product",
     gallery: projectGalleries.skillBridge,
-    highlights: ["AI-powered teacher recommendations", "Real-time chat and session scheduling", "Credits, OAuth, and two-factor authentication"],
+    highlights: [
+      "Built a full-stack MERN marketplace matching students with teachers through AI-driven recommendations",
+      "Developed a Python FastAPI + scikit-learn recommendation microservice using TF-IDF vectorization and cosine similarity",
+      "Implemented real-time chat with Socket.IO, including typing indicators, online presence, and AI learning assistance workflows",
+      "Secured accounts with JWT, Google OAuth 2.0, and optional two-factor authentication (2FA)",
+      "Built a credit system, meeting scheduling, Cloudinary media uploads, and Nodemailer notifications",
+    ],
   },
   {
     slug: "organization-task-tracker",
@@ -169,30 +196,54 @@ export const projects = [
     title: "Organization Task Tracker",
     projectBadge: "FINAL YEAR PROJECT",
     category: "Team operations",
-    period: "Jul 2023 - Jul 2024",
+    period: "Sep 2023 — Jan 2024",
     description:
       "A team task system supporting creation, assignment, tracking, notifications, role-based access, and collaboration.",
+    overview:
+      "Organization Task Tracker is an enterprise-style task and team operations platform developed as my BS Computer Science Final Year Project at COMSATS University Islamabad.",
+    contribution:
+      "Designed and developed the full-stack application, implementing the Angular frontend workspace, Laravel REST backend, relational MySQL schema, and role-based permission layers.",
+    architecture:
+      "Decoupled single-page application built with Angular communicating with a Laravel (PHP) REST API and MySQL database, structured around role-based access control (RBAC) for administrators, team leads, and members.",
+    challenges:
+      "Modeling hierarchical team permissions and keeping task status reporting clear across multiple organizational roles—addressed with structured RBAC middleware and activity reporting views.",
     stack: ["Angular", "Laravel", "MySQL", "PHP"],
     live: "https://www.youtube.com/watch?v=uwpQyfTYeJ0",
     accent: "orange",
     metric: "University final year project",
     gallery: projectGalleries.organizationTaskTracker,
-    highlights: ["Role-based user and team management", "Task creation, assignment, and progress tracking", "Notifications, shared documents, and reporting workflows"],
+    highlights: [
+      "Role-based user and team management (RBAC)",
+      "Task creation, assignment, and progress tracking",
+      "Notifications, shared documents, and reporting workflows",
+    ],
   },
   {
     slug: "fimit-ar-admin-panel",
     index: "04",
     title: "FIMIT AR Admin",
-    category: "3D scanning admin platform",
-    period: "2024",
+    category: "3D scanning & AR admin platform",
+    period: "Jun 2024 — Oct 2024",
     description:
-      "An administration workspace for a spatial-capture and 3D scanning platform, focused on dynamic interfaces, user management, scan metrics, and activity workflows.",
-    stack: ["React.js", "Firebase", "Admin UI", "User management"],
+      "An administration workspace for a spatial-capture, Augmented Reality (AR), and 3D scanning platform, focused on dynamic interfaces, user management, scan metrics, and activity workflows.",
+    overview:
+      "FIM IT is an Augmented Reality (AR) and 3D spatial-capture platform. The admin panel provides centralized operational control over users, AR assets, scan metrics, and real-time platform content.",
+    contribution:
+      "Developed the admin dashboard at TeraBit IT Company, building dynamic, reusable React UI components for user management, real-time content updates, and AR asset administration.",
+    architecture:
+      "React.js administration single-page application integrated with Firebase authentication and real-time backend services for instantaneous content and asset synchronization.",
+    challenges:
+      "Managing complex, nested AR asset metadata and real-time content states without cluttering the operator interface—solved through modular, reusable table and form component abstractions.",
+    stack: ["React.js", "Firebase", "Admin UI", "AR Asset Management"],
     live: "https://fim-it.com/",
     accent: "violet",
     metric: "Spatial data operations",
     gallery: projectGalleries.fimitAdmin,
-    highlights: ["User and project administration", "Scan metrics and activity visibility", "Firebase-backed authentication and data flows"],
+    highlights: [
+      "Developed the admin dashboard for an AR-based web application with real-time content management",
+      "Built dynamic, reusable UI components for user, content, and AR asset management",
+      "Firebase-backed authentication and operational visibility",
+    ],
   },
 ] as const;
 
@@ -201,10 +252,22 @@ export const moreProjects = [
     slug: "beam-balance",
     title: "Beam Balance",
     category: "Secure document management",
-    period: "2025 - Present",
+    period: "Feb 2025 - Present",
     status: "Ongoing",
     description:
       "A secure document platform with separate admin and client workspaces for controlled upload, retrieval, organization, and lifecycle tracking.",
+    overview:
+      "Beam Balance is a document management SaaS application built for secure file exchange and tracking between organization administrators and client accounts.",
+    contribution:
+      "Built the Next.js application and AWS S3 storage integration, creating dedicated admin and client dashboards for document upload, retrieval, and status tracking.",
+    architecture:
+      "Next.js full-stack web application integrated with AWS S3 object storage and role-separated dashboard views for administrative oversight and client self-service.",
+    challenges:
+      "Ensuring secure, isolated document access across client accounts while keeping upload and retrieval workflows fast and intuitive.",
+    highlights: [
+      "Built a secure document management platform with Next.js and AWS S3 file storage",
+      "Developed admin and client dashboards for document upload, retrieval, and tracking",
+    ],
     stack: ["Next.js", "AWS S3", "RBAC", "Secure storage"],
     live: null,
     github: null,
@@ -213,11 +276,23 @@ export const moreProjects = [
   {
     slug: "turkish-ecommerce-platform",
     title: "Turkish E-commerce Platform",
-    category: "E-commerce",
-    period: "2024 - Present",
-    status: "Ongoing",
+    category: "Classifieds e-commerce",
+    period: "2024 - 2025",
+    status: "Completed",
     description:
-      "A Turkish marketplace inspired by Sahibinden, with a custom responsive interface and marketplace workflows.",
+      "A Turkish classifieds e-commerce marketplace modeled on Sahibinden.com, with a custom responsive interface and multi-category listing workflows.",
+    overview:
+      "A large-scale Turkish classifieds and e-commerce web application modeled on Sahibinden.com, supporting multi-category listings, search filtering, and responsive browsing.",
+    contribution:
+      "Contributed to the frontend and product interface at TeraBit IT Company, building responsive React.js marketplace views and listing workflows.",
+    architecture:
+      "Component-driven React.js application structured for high-density classifieds categories, filtering, and mobile-responsive detail views.",
+    challenges:
+      "Presenting dense marketplace listing attributes clearly across desktop and mobile viewports.",
+    highlights: [
+      "Contributed to a Turkish classifieds e-commerce platform modeled on Sahibinden.com",
+      "Built responsive React.js category, filter, and listing views",
+    ],
     stack: ["React.js", "Responsive UI", "Marketplace"],
     live: "https://chimerical-moxie-c1e96e.netlify.app/",
     github: null,
@@ -227,11 +302,23 @@ export const moreProjects = [
     slug: "terabit-it-website",
     title: "TeraBit IT Company Website",
     category: "Corporate website",
-    period: "2024",
+    period: "Mar 2024 - May 2024",
     status: "Completed",
     description:
-      "The official TeraBit IT website, built with reusable React components and a fast, responsive company-facing experience.",
-    stack: ["React.js", "Performance", "Responsive UI"],
+      "The official TeraBit IT corporate website, built in React.js with a modular component architecture, modern UI/UX, and SEO-friendly structure.",
+    overview:
+      "The official corporate web presence for TeraBit IT Company, showcasing the company's software engineering services, product portfolio, and contact funnels.",
+    contribution:
+      "Built the corporate website in React.js during my time as a Full Stack Developer at TeraBit IT Company, implementing a modular component architecture, responsive layouts, and performance optimizations.",
+    architecture:
+      "Modular React.js frontend engineered with reusable UI sections, optimized asset loading, and semantic, SEO-friendly page hierarchy.",
+    challenges:
+      "Balancing rich agency visuals with fast initial page loads and clean semantic structure across mobile and desktop devices.",
+    highlights: [
+      "Built the corporate website in React.js with a modular component architecture and modern UI/UX",
+      "Implemented responsive layouts, performance optimization, and SEO-friendly page structure",
+    ],
+    stack: ["React.js", "Performance", "Responsive UI", "SEO"],
     live: "https://terabit-site.vercel.app/",
     github: null,
     gallery: projectGalleries.terabitWebsite,
@@ -357,11 +444,23 @@ export const moreProjects = [
     slug: "monetize-360-global",
     title: "Monetize 360 Global",
     category: "Marketing website",
-    period: "2025",
+    period: "Oct 2025 - Nov 2025",
     status: "Completed",
     description:
-      "An ad-revenue marketing website with motion-led React UI, EmailJS lead capture, SEO optimization, and Hostinger deployment.",
-    stack: ["React.js", "Framer Motion", "EmailJS", "SEO"],
+      "An SEO-optimized ad-revenue marketing website with lead funnels, EmailJS contact forms, Framer Motion animations, and Google Ads conversion tracking.",
+    overview:
+      "Monetize 360 Global is an ad-tech and publisher monetization marketing website designed to convert publisher traffic through structured lead funnels.",
+    contribution:
+      "Built the marketing site end to end using React.js and Framer Motion, integrating EmailJS contact funnels, technical SEO structure, and Google Ads conversion tracking.",
+    architecture:
+      "React.js frontend with Framer Motion scroll/interaction animations, serverless EmailJS lead delivery, and Google Ads event tracking.",
+    challenges:
+      "Combining smooth motion-led storytelling with strong Core Web Vitals, SEO crawlability, and accurate conversion attribution.",
+    highlights: [
+      "Built an SEO-optimized marketing site with lead funnels, EmailJS contact forms, and Framer Motion animations",
+      "Configured Google Ads conversion tracking for publisher acquisition campaigns",
+    ],
+    stack: ["React.js", "Framer Motion", "EmailJS", "SEO", "Google Ads"],
     live: "https://monetize360.global/",
     github: null,
     gallery: [],
@@ -397,11 +496,27 @@ export const moreProjects = [
     title: "AdPulse",
     featured: true,
     category: "Revenue analytics dashboard",
-    period: "2025 - Present",
+    period: "Aug 2025 - Present",
     status: "Ongoing",
     description:
       "A multi-tenant Google Ad Manager dashboard for scheduled revenue ingestion, publisher reporting, revenue-share rules, approvals, and payout tracking.",
-    stack: ["React", "Firebase", "GAM API", "Cloud Functions"],
+    overview:
+      "AdPulse (`adpulse.monetize360.eu`) is a multi-tenant SaaS revenue analytics and payout platform built for Google Ad Manager (GAM) publishers and ad-network administrators.",
+    contribution:
+      "Architected and built the multi-tenant dashboard, GAM REST API ingestion pipeline, Firebase custom-claim authentication, server-side revenue-share calculation engine, and admin payout lifecycle tools.",
+    architecture:
+      "React dashboard backed by Firebase Auth (custom claims for admin and publisher roles), Cloud Functions for scheduled GAM REST API ingestion and server-side revenue-share calculation, and Firestore secured with tenant-isolated rules and composite indexes.",
+    challenges:
+      "Ingesting scheduled impressions, clicks, and revenue data from the Google Ad Manager REST API while applying per-site or per-user revenue-share percentages securely on the server—solved via scheduled Cloud Functions and composite-indexed Firestore queries.",
+    highlights: [
+      "Built a multi-tenant revenue analytics dashboard for Google Ad Manager (GAM) publishers",
+      "Integrated the GAM REST API for scheduled ingestion of impressions, clicks, and revenue data",
+      "Implemented Firebase Auth with custom claims for admin and publisher roles",
+      "Developed a server-side revenue-share engine applied per site or per user via Cloud Functions",
+      "Built an admin panel for user management, site approval, and payout lifecycle tracking",
+      "Secured data with Firestore security rules and optimized queries with composite indexes",
+    ],
+    stack: ["React", "Firebase Auth", "Firestore", "Cloud Functions", "GAM REST API"],
     live: "https://adpulse.monetize360.eu/",
     github: null,
     gallery: projectGalleries.adPulse,

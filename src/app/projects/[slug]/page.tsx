@@ -20,16 +20,14 @@ export function generateMetadata({ params }: ProjectPageProps): Metadata {
   if (!project) return { title: "Project not found", robots: { index: false, follow: false } };
 
   const metadata = createPageMetadata({
-    title: `${project.title} — Full Stack Case Study`,
+    title: `${project.title} — ${project.category} Case Study`,
     description: project.description,
     path: `/projects/${project.slug}`,
     image: project.gallery[0] || "/myprofile.jpg",
+    keywords: [project.title, project.category, ...project.stack, "Junaid Ali case study"],
   });
 
-  return {
-    ...metadata,
-    keywords: [project.title, project.category, ...project.stack, "web development case study"],
-  };
+  return metadata;
 }
 
 export default function ProjectCaseStudy({ params }: ProjectPageProps) {
@@ -48,20 +46,62 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
   const highlights = "highlights" in project
     ? project.highlights
     : [project.description, `Built with ${project.stack.join(", ")}.`];
+  const overview = "overview" in project ? project.overview : project.description;
+  const contribution =
+    "contribution" in project
+      ? project.contribution
+      : `Designed and implemented key application features, user interfaces, and data workflows using ${project.stack.join(", ")}.`;
+  const architecture =
+    "architecture" in project
+      ? project.architecture
+      : `Built with ${project.stack.join(", ")}, structured for maintainable component boundaries and reliable runtime performance.`;
+  const challenges = "challenges" in project ? project.challenges : null;
+
   const projectUrl = `${SITE_URL}/projects/${project.slug}`;
+  const isLiveSoftware =
+    Boolean(project.live && !project.live.includes("youtube.com")) ||
+    project.category.toLowerCase().includes("saas") ||
+    project.category.toLowerCase().includes("dashboard") ||
+    project.category.toLowerCase().includes("application") ||
+    project.category.toLowerCase().includes("system");
+
+  const primaryEntitySchema = isLiveSoftware
+    ? {
+        "@context": "https://schema.org",
+        "@type": ["SoftwareApplication", "CreativeWork"],
+        "@id": `${projectUrl}#software`,
+        url: projectUrl,
+        name: project.title,
+        headline: `${project.title} — ${project.category} Case Study`,
+        description: overview,
+        applicationCategory: "WebApplication",
+        operatingSystem: "Web",
+        ...(project.gallery.length
+          ? { image: project.gallery.map((image) => `${SITE_URL}${image}`) }
+          : {}),
+        author: { "@id": `${SITE_URL}/#person` },
+        creator: { "@id": `${SITE_URL}/#person` },
+        keywords: project.stack.join(", "),
+        ...(project.live ? { sameAs: project.live } : {}),
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "@id": `${projectUrl}#case-study`,
+        url: projectUrl,
+        name: `${project.title} case study`,
+        description: overview,
+        ...(project.gallery.length
+          ? { image: project.gallery.map((image) => `${SITE_URL}${image}`) }
+          : {}),
+        author: { "@id": `${SITE_URL}/#person` },
+        creator: { "@id": `${SITE_URL}/#person` },
+        keywords: project.stack.join(", "),
+        ...(project.live ? { sameAs: project.live } : {}),
+      };
+
   const schema = [
-    {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "@id": `${projectUrl}#case-study`,
-      url: projectUrl,
-      name: `${project.title} case study`,
-      description: project.description,
-      image: project.gallery.map((image) => `${SITE_URL}${image}`),
-      creator: { "@id": `${SITE_URL}/#person` },
-      keywords: project.stack.join(", "),
-      sameAs: project.live || undefined,
-    },
+    primaryEntitySchema,
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -94,7 +134,7 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
               <span className="eyebrow !mb-0">{project.category} · Case study</span>
             </div>
             <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.5rem,8vw,7.5rem)] font-medium leading-[.86] tracking-[-.065em]">{project.title}</h1>
-            <p className="mt-8 max-w-3xl text-base leading-8 text-[#adb2aa] md:text-lg">{project.description}</p>
+            <p className="mt-8 max-w-3xl text-base leading-8 text-[#adb2aa] md:text-lg">{overview}</p>
           </Reveal>
 
           <Reveal delay={0.08} className="theme-card grid grid-cols-2 gap-5 rounded-[24px] border p-5 text-sm lg:grid-cols-1">
@@ -104,12 +144,12 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
         </div>
 
         <Reveal className="mt-12" delay={0.06}>
-          <CaseStudyGallery images={project.gallery} title={project.title} />
+          <CaseStudyGallery images={project.gallery} title={`${project.title} (${project.category})`} />
         </Reveal>
 
-        <div className="mt-20 grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+        <div className="mt-20 grid gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <Reveal>
-            <span className="eyebrow">Project overview</span>
+            <span className="eyebrow">Key deliverables</span>
             <h2 className="mt-5 font-display text-4xl font-medium tracking-[-.045em] md:text-5xl">What went into the build.</h2>
             <div className="mt-8 space-y-4">
               {highlights.map((highlight) => (
@@ -119,10 +159,32 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
                 </div>
               ))}
             </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              <article className="theme-card rounded-[24px] border p-6">
+                <p className="text-[10px] uppercase tracking-[.15em] text-[#c9ff63]">My contribution</p>
+                <h3 className="mt-3 font-display text-2xl font-medium tracking-[-.035em]">Role & ownership</h3>
+                <p className="mt-3 text-sm leading-7 text-[#adb2aa]">{contribution}</p>
+              </article>
+
+              <article className="theme-card rounded-[24px] border p-6">
+                <p className="text-[10px] uppercase tracking-[.15em] text-[#c9ff63]">Technical architecture</p>
+                <h3 className="mt-3 font-display text-2xl font-medium tracking-[-.035em]">System design</h3>
+                <p className="mt-3 text-sm leading-7 text-[#adb2aa]">{architecture}</p>
+              </article>
+            </div>
+
+            {challenges && (
+              <article className="theme-card mt-6 rounded-[24px] border p-6">
+                <p className="text-[10px] uppercase tracking-[.15em] text-[#c9ff63]">Engineering challenges & solutions</p>
+                <h3 className="mt-3 font-display text-2xl font-medium tracking-[-.035em]">How key problems were solved</h3>
+                <p className="mt-3 text-sm leading-7 text-[#adb2aa]">{challenges}</p>
+              </article>
+            )}
           </Reveal>
 
-          <Reveal delay={0.08} className="theme-card rounded-[28px] border p-7 md:p-9">
-            <span className="eyebrow">Technology</span>
+          <Reveal delay={0.08} className="theme-card h-fit rounded-[28px] border p-7 md:p-9">
+            <span className="eyebrow">Technology stack</span>
             <div className="mt-6 flex flex-wrap gap-2">
               {project.stack.map((technology) => (
                 <span key={technology} className="rounded-full border border-white/10 bg-white/[.04] px-4 py-2 text-xs text-[#c5c9c2]">{technology}</span>
@@ -143,6 +205,24 @@ export default function ProjectCaseStudy({ params }: ProjectPageProps) {
                   </a>
                 )}
                 {!project.live && !github && <p className="text-sm leading-7 text-[#858a83]">Private client work — public repository and live access are unavailable.</p>}
+              </div>
+            </div>
+
+            <div className="mt-10 border-t border-white/10 pt-7">
+              <p className="text-[10px] uppercase tracking-[.15em] text-[#737870]">Related services</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link href="/full-stack-development" className="rounded-full border border-white/10 px-3.5 py-1.5 text-xs text-[#b9bdb6] transition hover:border-[#c9ff63] hover:text-[#c9ff63]">
+                  Full Stack Development
+                </Link>
+                <Link href="/react-nextjs-development" className="rounded-full border border-white/10 px-3.5 py-1.5 text-xs text-[#b9bdb6] transition hover:border-[#c9ff63] hover:text-[#c9ff63]">
+                  React & Next.js
+                </Link>
+                <Link href="/mern-stack-development" className="rounded-full border border-white/10 px-3.5 py-1.5 text-xs text-[#b9bdb6] transition hover:border-[#c9ff63] hover:text-[#c9ff63]">
+                  MERN Stack
+                </Link>
+                <Link href="/saas-development" className="rounded-full border border-white/10 px-3.5 py-1.5 text-xs text-[#b9bdb6] transition hover:border-[#c9ff63] hover:text-[#c9ff63]">
+                  SaaS Development
+                </Link>
               </div>
             </div>
           </Reveal>

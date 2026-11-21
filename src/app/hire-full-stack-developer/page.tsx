@@ -136,6 +136,24 @@ export default function HireFullStackDeveloperPage() {
               </article>
             ))}
           </div>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Full Stack Development", href: "/full-stack-development" },
+              { title: "MERN Stack Development", href: "/mern-stack-development" },
+              { title: "React & Next.js Development", href: "/react-nextjs-development" },
+              { title: "SaaS Application Development", href: "/saas-development" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="theme-card inline-flex items-center justify-between rounded-2xl border px-5 py-4 text-sm font-medium transition hover:border-[#c9ff63]/50"
+              >
+                <span>{item.title}</span>
+                <ArrowUpRight size={16} className="text-[#c9ff63]" />
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

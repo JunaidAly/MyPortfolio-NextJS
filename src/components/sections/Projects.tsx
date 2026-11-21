@@ -161,7 +161,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.06} className="h-full">
               <motion.article className="soft-card flex h-full flex-col overflow-hidden rounded-[30px] p-3 md:p-4" whileHover={{ y: -8, scale: 1.006 }} transition={{ type: "spring", stiffness: 240, damping: 24 }}>
-                <ProjectMediaCarousel images={project.gallery} accent={project.accent} title={project.title} priority={index < 2} />
+                <ProjectMediaCarousel images={project.gallery} accent={project.accent} title={`${project.title} — ${project.category}`} priority={false} />
                 <div className="flex flex-1 flex-col p-4 pb-5 pt-7 md:p-6 md:pb-7">
                   <div className="flex items-start justify-between gap-5">
                     <div>

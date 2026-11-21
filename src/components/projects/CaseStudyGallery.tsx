@@ -77,7 +77,7 @@ export default function CaseStudyGallery({ images, title }: { images: readonly s
               className={`relative aspect-[16/10] overflow-hidden rounded-xl border transition ${index === activeImage ? "border-[#c9ff63] opacity-100" : "border-white/10 opacity-50 hover:opacity-90"}`}
               aria-label={`Show ${title} image ${index + 1}`}
             >
-              <Image src={image} alt="" fill sizes="160px" className="object-cover" />
+              <Image src={image} alt={`${title} thumbnail ${index + 1}`} fill sizes="160px" className="object-cover" />
             </button>
           ))}
         </div>

@@ -7,8 +7,14 @@ import RouteTransition from "@/components/layout/RouteTransition";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import JsonLd from "@/components/seo/JsonLd";
 import FluidCursor from "@/components/ui/FluidCursor";
-import { profile, skills } from "@/constants/portfolio";
-import { DEFAULT_DESCRIPTION, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { profile } from "@/constants/portfolio";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  SEO_KEYWORDS,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
 const themeScript = `
   (function () {
@@ -41,12 +47,12 @@ const body = Sora({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Junaid Ali | Full Stack & Frontend Developer",
+    default: DEFAULT_TITLE,
     template: "%s | Junaid Ali",
   },
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
-  keywords: [...SEO_KEYWORDS, "Junaid Ali"],
+  keywords: [...SEO_KEYWORDS],
   authors: [{ name: profile.name, url: SITE_URL }],
   creator: "Junaid Ali",
   publisher: "Junaid Ali",
@@ -54,15 +60,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Junaid Ali | Full Stack & Frontend Developer",
+    title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [{ url: "/myprofile.jpg", width: 1200, height: 1200, alt: "Junaid Ali, full-stack developer" }],
+    images: [
+      {
+        url: "/myprofile.jpg",
+        width: 960,
+        height: 1280,
+        alt: "Junaid Ali — Full Stack Developer in Islamabad, Pakistan",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Junaid Ali | Full Stack & Frontend Developer",
+    title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: ["/myprofile.jpg"],
   },
@@ -78,7 +91,12 @@ export const metadata: Metadata = {
     },
   },
   verification: { google: "50f10be814dc33ec" },
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "en-US": SITE_URL,
+    },
+  },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     shortcut: "/favicon.svg",
@@ -95,7 +113,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         url: SITE_URL,
         name: SITE_NAME,
         description: DEFAULT_DESCRIPTION,
-        inLanguage: "en",
+        inLanguage: "en-US",
+        author: { "@id": `${SITE_URL}/#person` },
         publisher: { "@id": `${SITE_URL}/#person` },
       },
       {
@@ -110,10 +129,34 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         address: {
           "@type": "PostalAddress",
           addressLocality: "Islamabad",
-          addressCountry: "PK",
+          addressCountry: "Pakistan",
         },
-        sameAs: [profile.github, profile.linkedin],
-        knowsAbout: [...skills, "Frontend Development", "SaaS Development", "Web Application Development"],
+        sameAs: [
+          profile.github,
+          profile.linkedin,
+          "https://www.upwork.com/freelancers/~01dfd95ce1afbfc610",
+          "https://www.guru.com/freelancers/junaid-aly",
+          "https://www.freelancer.pk/u/junaidaly131",
+        ],
+        knowsAbout: [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "Node.js",
+          "Express.js",
+          "NestJS",
+          "MongoDB",
+          "PostgreSQL",
+          "Supabase",
+          "Firebase",
+          "Flutter",
+          "Python",
+          "FastAPI",
+          "MERN Stack Development",
+          "SaaS Development",
+          "Full Stack Web Development",
+        ],
       },
     ],
   };

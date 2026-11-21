@@ -1,0 +1,49 @@
+# Junaid Ali — Full Stack Developer
+
+> Personal developer portfolio of Junaid Ali, a Full Stack Developer based in Islamabad, Pakistan with 5+ years of experience building production SaaS platforms, multi-tenant dashboards, booking systems, MERN applications, and AI-enabled web products.
+
+- Canonical Portfolio URL: https://junaiddev.skill-bridge.me
+- Location: Islamabad, Pakistan (Open to Remote Worldwide)
+- Email: junaidaly131@gmail.com
+- GitHub: https://github.com/JunaidAly
+- LinkedIn: https://www.linkedin.com/in/junaid-ali-8679871ab/
+- Upwork: https://www.upwork.com/freelancers/~01dfd95ce1afbfc610
+- Guru: https://www.guru.com/freelancers/junaid-aly
+- Freelancer: https://www.freelancer.pk/u/junaidaly131
+- Resume (PDF): https://junaiddev.skill-bridge.me/My%20Resume.pdf
+
+## Core Technical Stack
+
+- Frontend: React.js, Next.js (App Router), TypeScript, JavaScript, Angular, Tailwind CSS, shadcn/ui, Framer Motion, HTML5, CSS3
+- Backend: Node.js, Express.js, NestJS, Python, FastAPI, PHP, Laravel, RESTful APIs, Socket.IO (WebSockets)
+- Databases & BaaS: PostgreSQL, Supabase, MongoDB, MySQL, Firebase (Firestore, Auth, Cloud Functions)
+- Mobile: React Native, Flutter
+- AI & Machine Learning: scikit-learn, TF-IDF Vectorization, Cosine Similarity, Recommendation Microservices
+- Cloud & DevOps: AWS (S3), Vercel, Netlify, Render, Docker, Jenkins, CI/CD, Git, GitHub
+
+## Primary Pages
+
+- [Homepage](https://junaiddev.skill-bridge.me/): Overview of featured projects, professional experience, capabilities, and contact form.
+- [Projects & Case Studies](https://junaiddev.skill-bridge.me/projects): Complete portfolio of production SaaS platforms, dashboards, and web applications.
+- [Experience](https://junaiddev.skill-bridge.me/experience): Work history at CalibreOn International (NorthSpex), TeraBit IT Company, and Social Swirl.
+- [About](https://junaiddev.skill-bridge.me/about): Engineering approach, capabilities, and background.
+- [Contact](https://junaiddev.skill-bridge.me/contact): Direct project inquiry form and contact details.
+
+## Development Services
+
+- [Hire a Full Stack Developer](https://junaiddev.skill-bridge.me/hire-full-stack-developer): General engagement model, deliverables, and FAQs.
+- [Full Stack Development Services](https://junaiddev.skill-bridge.me/full-stack-development): End-to-end web application architecture, APIs, authentication, databases, and deployment.
+- [MERN Stack Development Services](https://junaiddev.skill-bridge.me/mern-stack-development): Full-stack MongoDB, Express.js, React.js, and Node.js applications with real-time features.
+- [React & Next.js Development Services](https://junaiddev.skill-bridge.me/react-nextjs-development): High-performance Next.js App Router applications, SSR/SSG, SEO-ready product interfaces, and component systems.
+- [SaaS Application Development](https://junaiddev.skill-bridge.me/saas-development): Multi-tenant SaaS platforms, role-based access control (RBAC), booking systems, and analytics dashboards.
+
+## Flagship Project Case Studies
+
+- [Primus Booking](https://junaiddev.skill-bridge.me/projects/primus-booking): Multi-portal SaaS appointment booking ecosystem (Customer, Business, Admin) built with Next.js, TypeScript, and Supabase (Live: https://primusbooking.com/).
+- [SkillBridge](https://junaiddev.skill-bridge.me/projects/skillbridge): AI-powered skill exchange platform built on the MERN stack with a Python FastAPI + scikit-learn recommendation microservice, Socket.IO real-time chat, scheduling, and 2FA (Live: https://www.skill-bridge.me/).
+- [AdPulse](https://junaiddev.skill-bridge.me/projects/adpulse): Multi-tenant Google Ad Manager (GAM) revenue analytics dashboard with scheduled REST API ingestion, Firebase Auth custom claims, and Cloud Functions revenue-share engine (Live: https://adpulse.monetize360.eu/).
+- [FIMIT AR Admin](https://junaiddev.skill-bridge.me/projects/fimit-ar-admin-panel): Admin dashboard for a 3D scanning and Augmented Reality web platform with real-time content management (Live: https://fim-it.com/).
+- [Monetize 360 Global](https://junaiddev.skill-bridge.me/projects/monetize-360-global): SEO-optimized ad-tech marketing website built with React.js, Framer Motion, and EmailJS lead capture (Live: https://monetize360.global/).
+- [TeraBit IT Company Website](https://junaiddev.skill-bridge.me/projects/terabit-it-website): Corporate website built in React.js with a modular, SEO-friendly component architecture (Live: https://terabit-site.vercel.app/).
+- [Beam Balance](https://junaiddev.skill-bridge.me/projects/beam-balance): Secure document management system built with Next.js and AWS S3 storage.
+- [Organization Task Tracker](https://junaiddev.skill-bridge.me/projects/organization-task-tracker): Team operations and task tracking platform built with Angular, Laravel, and MySQL.

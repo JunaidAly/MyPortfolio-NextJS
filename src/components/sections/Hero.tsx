@@ -31,15 +31,15 @@ export default function Hero() {
             </motion.div>
 
             <motion.p variants={item} transition={{ duration: 0.6 }} className="mb-4 font-display text-lg text-[#c9ff63]">
-              Full Stack Developer · Islamabad / Remote
+              {profile.name} · React, Next.js, Node.js &amp; MERN Stack Developer
             </motion.p>
 
-            <motion.h1 variants={item} transition={{ duration: 0.7 }} className="max-w-4xl font-display text-[clamp(3.2rem,8.7vw,7.6rem)] font-medium leading-[.87] tracking-[-.075em]">
-              I build full-stack products that <span className="text-[#8b8f89]">feel effortless.</span>
+            <motion.h1 variants={item} transition={{ duration: 0.7 }} className="max-w-4xl font-display text-[clamp(3.1rem,8.2vw,7.1rem)] font-medium leading-[.88] tracking-[-.075em]">
+              Full Stack Developer in <span className="text-[#8b8f89]">Islamabad, Pakistan.</span>
             </motion.h1>
 
             <motion.p variants={item} transition={{ duration: 0.6 }} className="mt-8 max-w-2xl text-base leading-8 text-[#aeb2ab] md:text-lg">
-              I&apos;m {profile.name}, a full-stack and frontend developer. I turn complex ideas into clear, scalable SaaS platforms, dashboards, and web applications from interface to API to launch.
+              I build scalable web applications, SaaS platforms and digital products using React, Next.js and Node.js—engineering everything from responsive TypeScript interfaces to MERN stack APIs, Supabase/PostgreSQL databases, and cloud deployments.
             </motion.p>
 
             <motion.div variants={item} transition={{ duration: 0.6 }} className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
@@ -76,7 +76,7 @@ export default function Hero() {
           <motion.div className="hero-stage" initial={{ opacity: 0, scale: 0.94, rotateY: 8 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}>
             <div className="orbital-ring" aria-hidden="true" />
             <div className="always-dark portrait-card">
-              <Image src="/myprofile.jpg" alt="Junaid Ali, Full Stack Developer" fill priority sizes="(max-width: 900px) 90vw, 42vw" />
+              <Image src="/myprofile.jpg" alt="Junaid Ali — Full Stack Developer in Islamabad, Pakistan" fill priority sizes="(max-width: 900px) 90vw, 42vw" />
               <div className="portrait-label">
                 <div>
                   <p className="font-display text-xl font-semibold">Junaid Ali</p>
